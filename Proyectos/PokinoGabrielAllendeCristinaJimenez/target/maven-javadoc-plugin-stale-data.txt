@@ -1,0 +1,47 @@
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-source
+'11'
+-sourcepath
+'/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2022. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'pokinoCrisGabi 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' '/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'pokinoCrisGabi 1.0-SNAPSHOT API'
+juego
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/src/main/java = 1647425159405
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/type-search-index.zip = 1647425228442
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/stylesheet.css = 1647425228466
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/package-search-index.zip = 1647425228438
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/member-search-index.zip = 1647425228442
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/script.js = 1647425228466
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/index.html = 1647425228458
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/deprecated-list.html = 1647425228458
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/element-list = 1647425228350
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/package-search-index.js = 1647425228426
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/search.js = 1647425228466
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/type-search-index.js = 1647425228442
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/allpackages-index.html = 1647425228454
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/overview-tree.html = 1647425228410
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/allclasses.html = 1647425228458
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/help-doc.html = 1647425228462
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/allclasses-index.html = 1647425228450
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/member-search-index.js = 1647425228442
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/constant-values.html = 1647425228370
+/home/acutuc/Escritorio/Proyectos/PokinoGabrielAllendeCristinaJimenez/target/site/apidocs/index-all.html = 1647425228442
