@@ -1,6 +1,7 @@
 package hospital;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Objects;
 
 /**
@@ -89,10 +90,9 @@ public abstract class Persona {
         return "Persona{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", nif=" + nif + '}';
     }
     
-    //Métodos
-    public void renovarNIF(LocalDate fechaSolitud){
-        
+    //Método.
+    public final void renovarNIF(LocalDate fechaSolicitud){
+        this.nif.renovar(fechaSolicitud);
     }
-    
     
 }

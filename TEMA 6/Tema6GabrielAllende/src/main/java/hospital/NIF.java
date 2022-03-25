@@ -31,24 +31,12 @@ public class NIF {
         return numeroDNI;
     }
 
-    public void setNumeroDNI(String numeroDNI) {
-        this.numeroDNI = numeroDNI;
-    }
-
     public char getLetraDNI() {
         return letraDNI;
     }
 
-    public void setLetraDNI(char letraDNI) {
-        this.letraDNI = letraDNI;
-    }
-
     public LocalDate getFechaCaducidad() {
         return fechaCaducidad;
-    }
-
-    public void setFechaCaducidad(LocalDate fechaCaducidad) {
-        this.fechaCaducidad = fechaCaducidad;
     }
 
     //hashCode()
@@ -83,6 +71,13 @@ public class NIF {
         return Objects.equals(this.fechaCaducidad, other.fechaCaducidad);
     }
     
+    //toString()
+    @Override
+    public String toString() {
+        return "NIF{" + "numeroDNI=" + numeroDNI + ", letraDNI=" + letraDNI + ", fechaCaducidad=" + fechaCaducidad + '}';
+    }
+    
+    
     //Métodos:
     //Método que genera letra aleatoria.
     private char calcularLetra() {
@@ -94,8 +89,8 @@ public class NIF {
     }
     
     //Método que suma 10 años al NIF al renovarlo.
-    public LocalDate renovar(LocalDate fechaSolicitudRenovacion){
-        return this.fechaCaducidad = fechaSolicitudRenovacion.plusYears(10);
+    public void renovar(LocalDate fechaSolicitudRenovacion){
+        this.fechaCaducidad = fechaSolicitudRenovacion.plusYears(10);
     }
     
     
