@@ -43,7 +43,7 @@ public class PruebaArtista {
         lista.add(actor2);
         
         //Ordenación con Comparator.
-        Collections.sort(lista, (a1, a2))->a1.getNombre().compareTo(a2.getNombre());
+        
                 
         //Realizo la llamada del método de la superclase Artista en todos los objetos, con un bucle forEach.
         for (Artista artista : lista) {
