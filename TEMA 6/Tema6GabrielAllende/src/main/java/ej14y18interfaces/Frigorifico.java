@@ -36,13 +36,14 @@ public class Frigorifico extends Electrodomestico implements Silencioso, Compara
     }
     
     //Método sobrescrito que implementa de Silencioso
-    @Override
     public void silencio(){
         System.out.println("El frigorífico de " + getLitros() + "L, emite 50dB.");
     }
     
     //compareTo con casting explícito
     public int compareTo(Frigorifico f){
+        // return Double.compare(f.getLitros(), this.litros);
+        //Casting explícito.
         return (int) (this.litros - f.getLitros());
     }
     

@@ -4,7 +4,7 @@ package ej14y18interfaces;
  *
  * @author Gabriel
  */
-//Definición de la clase, extiende de Electrodomestico e implementa Silencioso
+//Definición de la clase, extiende de Electrodomestico e implementa Silencioso y Comparable
 public class Microondas extends Electrodomestico implements Silencioso, Comparable<Microondas>{
     //Atributos de la clase.
     private double potenciaMax;
@@ -36,13 +36,13 @@ public class Microondas extends Electrodomestico implements Silencioso, Comparab
     }
     
     //Método sobrescrito que implementa de Silencioso
-    @Override
     public void silencio(){
         System.out.println("El microondas de consumo " + getPotenciaMax() + "w, empite 40dB.");
     }
     
     //compareTo con casting explícito
     public int compareTo(Microondas m){
+        //Casting explícito
         return (int) (this.potenciaMax - m.getPotenciaMax());
     }
 }

@@ -13,7 +13,6 @@ public class Paciente extends Persona{
     private String numeroHistoria;
     
     //Constructor con sus atributos por defecto.
-
     public Paciente() {
     }
     

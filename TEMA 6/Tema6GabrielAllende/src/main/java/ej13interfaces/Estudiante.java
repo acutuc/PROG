@@ -15,7 +15,7 @@ public class Estudiante extends Persona{
     }
     
     //Constructor parametrizado.
-    public Estudiante(String id, String nombre, String apellidos, String nif, String direccion) {
+    public Estudiante(String id, String nombre, String apellidos, String nif, Direccion direccion) {
         super(nombre, apellidos, nif, direccion);
         this.id = id;
     }

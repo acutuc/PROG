@@ -67,7 +67,7 @@ public class Administrativo extends Empleado{
     //Método sobrescrito de la clase padre.
     @Override
     public double calcularIRPF(){
-        return super.getSalario() * this.grupo.getIrpf();
+        return this.getSalario() * this.grupo.getIrpf();
     }
     
     //Método para que el administrativo registre un documento

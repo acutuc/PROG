@@ -15,7 +15,7 @@ public class Profesor extends Persona{
     }
     
     //Constructor parametrizado.
-    public Profesor(String especialidad, String nombre, String apellidos, String nif, String direccion) {
+    public Profesor(String especialidad, String nombre, String apellidos, String nif, Direccion direccion) {
         super(nombre, apellidos, nif, direccion);
         this.especialidad = especialidad;
     }

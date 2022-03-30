@@ -10,14 +10,14 @@ public abstract class Persona implements Identificable{
     private String nombre;
     private String apellidos;
     private String nif;
-    private String direccion;
+    private Direccion direccion;
     
     //Constructor con sus atributos por defecto.
     public Persona(){
     }
     
     //Constructor parametrizado.
-    public Persona(String nombre, String apellidos, String nif, String direccion) {
+    public Persona(String nombre, String apellidos, String nif, Direccion direccion) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.nif = nif;
@@ -49,11 +49,11 @@ public abstract class Persona implements Identificable{
         this.nif = nif;
     }
 
-    public String getDireccion() {
+    public Direccion getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
 
