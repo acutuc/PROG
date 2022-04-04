@@ -1,5 +1,6 @@
 package actividadclasevuelo;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Objects;
 
 /**
@@ -16,9 +17,9 @@ public class Pasajero {
     
     //Constructor con sus atributos por defecto
     public Pasajero() {
-        this.nombre = "Pasajero";
-        this.apellidos = "Pasajero";
-        this.nif = new NIF("45876985", LocalDate.now());
+        this.nombre = "NombrePasajero";
+        this.apellidos = "ApellidoPasajero";
+        this.nif = new NIF("45876985", LocalDate.of(2024, Month.OCTOBER, 7));
     }
     
     //Constructor parametrizado.

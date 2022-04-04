@@ -7,39 +7,43 @@ import java.util.Objects;
  *
  * @author acutuc
  */
-/*Tenemos la clase Vuelo con 5 atributos (codigo de vuelo, ciudad origen, ciudad destino, duración del vuelo y 
-lista de pasajeros).
-En el main se genera una lista de vuelos, un método estático que genere un Map que contenga para cada destino
-el número de pasajeros que llegan a ese desino de todos los vuelos, otro método donde repetimos el método
-anterior pero ordenando alfabéticamente por destino y el tercer método debe permitir saber por código de vuelo
-los pasajeros que hay*/
+/*
+
+-- Enunciado de Vico --
+Esta tarea sirve para hacer un repaso de las estructuras Map estudiadas. El ejercicio consiste en, a partir de una lista de vuelos, obtener en distintos métodos la siguiente información:
+Método que devuelve un map donde para cada ciudad de destino se indique el número de pasajeros que vuelan a ese destino, de entre todos los vuelos.
+Método que devuelva la misma información que el anterior pero garantizando que las ciudades contenidas en el map están ordenadas alfabéticamente.
+Método que genere un map donde a partir del código de vuelo se puedan obtener todos los pasajeros de ese vuelo.
+La clase Vuelo tiene como atributos: código vuelo, origen, destino, duración y la lista de pasajeros.*/
+
 //Definición de la clase
 public class Vuelo {
+
     //Atributos de la clase
     private String codVuelo;
-    private String ciudadOrigen;
-    private String ciudadDestino;
+    private CiudadOrigen ciudadOrigen;
+    private CiudadDestino ciudadDestino;
     private int duracionVueloMin;
     private ArrayList<Pasajero> listaPasajeros;
-    
+
     //Constructor con sus atributos por defecto.
     public Vuelo() {
         this.codVuelo = "46824";
-        this.ciudadOrigen = "Málaga";
-        this.ciudadDestino = "París";
+        this.ciudadOrigen = CiudadOrigen.MALAGA;
+        this.ciudadDestino = CiudadDestino.ROMA;
         this.duracionVueloMin = 185;
         this.listaPasajeros = new ArrayList<>();
     }
-    
+
     //Constructor paramtrizado
-    public Vuelo(String codVuelo, String ciudadOrigen, String ciudadDestino, int duracionVueloMin, ArrayList<Pasajero> listaPasajeros) {
+    public Vuelo(String codVuelo, CiudadOrigen ciudadOrigen, CiudadDestino ciudadDestino, int duracionVueloMin, ArrayList<Pasajero> listaPasajeros) {
         this.codVuelo = codVuelo;
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
         this.duracionVueloMin = duracionVueloMin;
         this.listaPasajeros = listaPasajeros;
     }
-    
+
     //Getters y setters
     public String getCodVuelo() {
         return codVuelo;
@@ -49,19 +53,19 @@ public class Vuelo {
         this.codVuelo = codVuelo;
     }
 
-    public String getCiudadOrigen() {
+    public CiudadOrigen getCiudadOrigen() {
         return ciudadOrigen;
     }
 
-    public void setCiudadOrigen(String ciudadOrigen) {
+    public void setCiudadOrigen(CiudadOrigen ciudadOrigen) {
         this.ciudadOrigen = ciudadOrigen;
     }
 
-    public String getCiudadDestino() {
+    public CiudadDestino getCiudadDestino() {
         return ciudadDestino;
     }
 
-    public void setCiudadDestino(String ciudadDestino) {
+    public void setCiudadDestino(CiudadDestino ciudadDestino) {
         this.ciudadDestino = ciudadDestino;
     }
 
@@ -80,7 +84,7 @@ public class Vuelo {
     public void setListaPasajeros(ArrayList<Pasajero> listaPasajeros) {
         this.listaPasajeros = listaPasajeros;
     }
-    
+
     //toString()
     @Override
     public String toString() {
@@ -112,22 +116,20 @@ public class Vuelo {
             return false;
         }
         final Vuelo other = (Vuelo) obj;
-//        if (this.duracionVueloMin != other.duracionVueloMin) {
-//            return false;
-//        }
+        if (this.duracionVueloMin != other.duracionVueloMin) {
+            return false;
+        }
         if (!Objects.equals(this.codVuelo, other.codVuelo)) {
             return false;
-//        }
-//        if (!Objects.equals(this.ciudadOrigen, other.ciudadOrigen)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.ciudadDestino, other.ciudadDestino)) {
-//            return false;
-//        }
-//        return Objects.equals(this.listaPasajeros, other.listaPasajeros);
+        }
+        if (!Objects.equals(this.ciudadOrigen, other.ciudadOrigen)) {
+            return false;
+        }
+        if (!Objects.equals(this.ciudadDestino, other.ciudadDestino)) {
+            return false;
+        }
+        return Objects.equals(this.codVuelo, other.codVuelo);
     }
-    
-    
     
     
 }
