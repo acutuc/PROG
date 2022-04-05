@@ -3,10 +3,9 @@ package actividadclasevuelo;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 /**
  *
@@ -47,10 +46,10 @@ public class PruebaVuelos {
         Pasajero p12 = new Pasajero("NomPasajero12", "ApePasajero12", n12);
 
         //Creo listaPasajeros en la que añadiré los pasajeros creados anteriormente.
-        Set<Pasajero> listaPasajeros = new TreeSet<>();
-        Set<Pasajero> listaPasajeros2 = new TreeSet<>();
-        Set<Pasajero> listaPasajeros3 = new TreeSet<>();
-        Set<Pasajero> listaPasajeros4 = new TreeSet<>();
+        ArrayList<Pasajero> listaPasajeros = new ArrayList<>();
+        ArrayList<Pasajero> listaPasajeros2 = new ArrayList<>();
+        ArrayList<Pasajero> listaPasajeros3 = new ArrayList<>();
+        ArrayList<Pasajero> listaPasajeros4 = new ArrayList<>();
 
         //Añado tres pasajeros a cada lista
         listaPasajeros.add(p1);
@@ -82,25 +81,76 @@ public class PruebaVuelos {
         listaVuelos.add(vuelo3);
         listaVuelos.add(vuelo4);
 
-        //Añado a cada vuelo, su clave que lo identifica.
-        Map<String, Vuelo> claveValorVuelo = new TreeMap<>();
-        claveValorVuelo.put("04586", vuelo1);
-
-        Map<String, Vuelo> claveValorVuelo2 = new TreeMap<>();
-        claveValorVuelo2.put("23954", vuelo2);
-
-        Map<String, Vuelo> claveValorVuelo3 = new TreeMap<>();
-        claveValorVuelo3.put("94602", vuelo3);
-
-        Map<String, Vuelo> claveValorVuelo4 = new TreeMap<>();
-        claveValorVuelo4.put("64295", vuelo4);
-
+        //Imprimo listaVuelos
+        for (Vuelo vuelo : listaVuelos) {
+            System.out.println(vuelo.toString());
+        }
+        
+        //Aplico e imprimo el método que devuelve un map donde para cada ciudad de destino se indique el número de pasajeros que vuelan a ese destino, de entre todos los vuelos.
+        System.out.println("------------------------------------------------------------------------");
+        System.out.println(cantidadPasajerosDestino(listaVuelos));
+        
+        //Aplico e imprimo el método que devuelva la misma información que el anterior pero garantizando que las ciudades contenidas en el map están ordenadas alfabéticamente.
+        System.out.println("------------------------------------------------------------------------");
+        System.out.println(cantidadPasajerosDestinoOrdenados(listaVuelos).toString());
+        
+        //Aplico e imprimo el método que genere un map donde a partir del código de vuelo se puedan obtener todos los pasajeros de ese vuelo.
+        System.out.println("------------------------------------------------------------------------");
+        System.out.println(pasajerosCodigoVuelo(listaVuelos, "04586")); //Código del vuelo1
+        System.out.println(pasajerosCodigoVuelo(listaVuelos, "55555"));//Prueba con un código inexistente
     }
 
     //Métodos
     //Método que devuelve un map donde para cada ciudad de destino se indique el número de pasajeros que vuelan a ese destino, de entre todos los vuelos.
-    public Map<Vuelo, Pasajero> cantidadPasajeros() {
-        Map<Vuelo, Pasajero> map = new TreeMap<>();
+    public static Map<String, Integer> cantidadPasajerosDestino(ArrayList<Vuelo> listaVuelos) {
+        //Creo el Map vacío para hacer el return con los datos implementados.
+        Map<String, Integer> map = new HashMap<>();
+        //Declaro un int en el que almacenaré los datos.
         int cantidadPasajeros;
-
+        
+        //Recorro con un bucle for la lista de vuelos
+        for (Vuelo vuelo : listaVuelos) { 
+            //De cada vuelo, guardo la cantidad de pasajeros en la variable.
+            cantidadPasajeros = vuelo.getListaPasajeros().size();
+            //Almaceno en el map el destino (String) y sus pasajeros (Integer).
+            map.put(vuelo.getCiudadDestino().toString(), cantidadPasajeros);
+        }
+        
+        return map;
     }
+    
+    //Método que devuelva la misma información que el anterior pero garantizando que las ciudades contenidas en el map están ordenadas alfabéticamente.
+    //Éste método es exactamente igual que el anterior, pero en vez de instanciar como HashMap, lo haremos como TreeMap.
+    public static Map<String, Integer> cantidadPasajerosDestinoOrdenados(ArrayList<Vuelo> listaVuelos){
+        //Creo el Map vacío para hacer el return con los datos implementados.
+        Map<String, Integer> map = new TreeMap<>();
+        //Declaro un int en el que almacenaré los datos.
+        int cantidadPasajeros;
+        
+        //Recorro con un bucle for la lista de vuelos
+        for (Vuelo vuelo : listaVuelos) { 
+            //De cada vuelo, guardo la cantidad de pasajeros en la variable.
+            cantidadPasajeros = vuelo.getListaPasajeros().size();
+            //Almaceno en el map el destino (String) y sus pasajeros (Integer).
+            map.put(vuelo.getCiudadDestino().toString(), cantidadPasajeros);
+        }
+        
+        return map;
+    }
+    
+    //Método que genere un map donde a partir del código de vuelo se puedan obtener todos los pasajeros de ese vuelo.
+    public static Map<String, ArrayList<Pasajero>> pasajerosCodigoVuelo(ArrayList<Vuelo> listaVuelos, String codVuelo){
+        //Creo el Map vacío para hacer el return con los datos implementados.
+        Map<String, ArrayList<Pasajero>> map = new HashMap<>();
+        
+        //Recorro con un bucle for la lista de vuelos
+        for (Vuelo vuelo : listaVuelos) {
+            //Condición que comprueba que el codVuelo que introducimos existe en la lista de vuelos.
+            if(vuelo.getCodVuelo().equals(codVuelo)){
+                map.put(vuelo.getCodVuelo(), vuelo.getListaPasajeros());
+            }
+        }
+        return map;
+    }
+    
+}
