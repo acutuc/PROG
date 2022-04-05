@@ -141,6 +141,10 @@ public class Vuelo {
         Map<Vuelo, Pasajero> map = new TreeMap<>();
         int cantidadPasajeros;
         
+        for (Pasajero pasajero : listaPasajeros) {
+            
+        }
+        
         
     }
 }

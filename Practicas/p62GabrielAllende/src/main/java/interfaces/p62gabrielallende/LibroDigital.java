@@ -41,6 +41,9 @@ public final class LibroDigital extends Libro implements SeDescarga{
     //equals
     @Override
     public boolean equals(Object obj) {
+        if (!super.equals(obj)){
+            return false;
+        }
         if (this == obj) {
             return true;
         }

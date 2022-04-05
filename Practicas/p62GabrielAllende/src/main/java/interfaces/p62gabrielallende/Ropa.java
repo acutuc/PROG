@@ -44,6 +44,9 @@ public abstract class Ropa extends Producto implements SeEnvia{
     //equals
     @Override
     public boolean equals(Object obj) {
+        if (!super.equals(obj)){
+            return false;
+        }
         if (this == obj) {
             return true;
         }

@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Gabriel
  */
 //Definición de la clase, que hereda de Ropa
-public class Pantalon extends Ropa{
+public final class Pantalon extends Ropa{
     //Atributos de la clase.
     private String talla;
     
@@ -43,6 +43,9 @@ public class Pantalon extends Ropa{
     //equals
     @Override
     public boolean equals(Object obj) {
+        if (!super.equals(obj)){
+            return false;
+        }
         if (this == obj) {
             return true;
         }

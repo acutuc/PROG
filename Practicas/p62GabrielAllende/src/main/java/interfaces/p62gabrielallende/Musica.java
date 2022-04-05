@@ -43,6 +43,9 @@ public final class Musica extends Producto{
     //equals
     @Override
     public boolean equals(Object obj) {
+        if (!super.equals(obj)){
+            return false;
+        }
         if (this == obj) {
             return true;
         }
