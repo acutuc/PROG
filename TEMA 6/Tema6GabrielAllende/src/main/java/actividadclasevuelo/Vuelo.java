@@ -1,7 +1,11 @@
 package actividadclasevuelo;
 
-import java.util.ArrayList;
+
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  *
@@ -24,7 +28,7 @@ public class Vuelo {
     private CiudadOrigen ciudadOrigen;
     private CiudadDestino ciudadDestino;
     private int duracionVueloMin;
-    private ArrayList<Pasajero> listaPasajeros;
+    private Set<Pasajero> listaPasajeros;
 
     //Constructor con sus atributos por defecto.
     public Vuelo() {
@@ -32,11 +36,11 @@ public class Vuelo {
         this.ciudadOrigen = CiudadOrigen.MALAGA;
         this.ciudadDestino = CiudadDestino.ROMA;
         this.duracionVueloMin = 185;
-        this.listaPasajeros = new ArrayList<>();
+        this.listaPasajeros = new TreeSet<>();
     }
 
     //Constructor paramtrizado
-    public Vuelo(String codVuelo, CiudadOrigen ciudadOrigen, CiudadDestino ciudadDestino, int duracionVueloMin, ArrayList<Pasajero> listaPasajeros) {
+    public Vuelo(String codVuelo, CiudadOrigen ciudadOrigen, CiudadDestino ciudadDestino, int duracionVueloMin, Set<Pasajero> listaPasajeros) {
         this.codVuelo = codVuelo;
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
@@ -77,11 +81,11 @@ public class Vuelo {
         this.duracionVueloMin = duracionVueloMin;
     }
 
-    public ArrayList<Pasajero> getListaPasajeros() {
+    public Set<Pasajero> getListaPasajeros() {
         return listaPasajeros;
     }
 
-    public void setListaPasajeros(ArrayList<Pasajero> listaPasajeros) {
+    public void setListaPasajeros(Set<Pasajero> listaPasajeros) {
         this.listaPasajeros = listaPasajeros;
     }
 
@@ -131,5 +135,12 @@ public class Vuelo {
         return Objects.equals(this.codVuelo, other.codVuelo);
     }
     
-    
+    //Métodos
+    //Método que devuelve un map donde para cada ciudad de destino se indique el número de pasajeros que vuelan a ese destino, de entre todos los vuelos.
+    public Map<Vuelo, Pasajero> cantidadPasajeros(){
+        Map<Vuelo, Pasajero> map = new TreeMap<>();
+        int cantidadPasajeros;
+        
+        
+    }
 }
