@@ -136,8 +136,8 @@ public class PruebaVuelos {
         }
         
         return map;
-    }
-    
+    } 
+   
     //Método que genere un map donde a partir del código de vuelo se puedan obtener todos los pasajeros de ese vuelo.
     public static Map<String, ArrayList<Pasajero>> pasajerosCodigoVuelo(ArrayList<Vuelo> listaVuelos, String codVuelo){
         //Creo el Map vacío para hacer el return con los datos implementados.
