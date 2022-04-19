@@ -8,7 +8,7 @@ import java.io.IOException;
  *
  * @author acutuc
  */
-public class Ej1 {
+public class Ej1Escribir {
 
     public static void main(String[] args) {
         // Fichero a crear. Ruta relativa a la carpeta raíz del proyecto

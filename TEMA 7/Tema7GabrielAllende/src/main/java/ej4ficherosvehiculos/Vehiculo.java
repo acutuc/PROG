@@ -1,4 +1,4 @@
-package ej2vehiculos;
+package ej4ficherosvehiculos;
 
 public class Vehiculo {
     //Atributos.

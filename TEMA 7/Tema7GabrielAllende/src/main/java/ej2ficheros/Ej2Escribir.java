@@ -9,7 +9,7 @@ import java.util.Scanner;
  *
  * @author acutuc
  */
-public class Ej2 {
+public class Ej2Escribir {
 
     /*2.- Implementa un programa que vaya escribiendo líneas de texto en un archivo.
     El archivo se llamará “teclado.txt” y se creará en la raíz del proyecto.

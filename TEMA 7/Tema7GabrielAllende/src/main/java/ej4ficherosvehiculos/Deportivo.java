@@ -1,4 +1,4 @@
-package ej2vehiculos;
+package ej4ficherosvehiculos;
 
 /**
  *
@@ -10,7 +10,7 @@ public class Deportivo extends Vehiculo{
 
 
     //Constructor parametrizado.
-    public Deportivo(int cilindrada, long bastidor, String matricula, String marca, String modelo, String color, double tarifa) {
+    public Deportivo(int cilindrada, Long bastidor, String matricula, String marca, String modelo, String color, double tarifa) {
         super(bastidor, matricula, marca, modelo, color, tarifa);
         this.cilindrada = cilindrada;
     }

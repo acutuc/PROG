@@ -1,4 +1,4 @@
-package ej2vehiculos;
+package ej4ficherosvehiculos;
 
 /**
  *
@@ -11,7 +11,7 @@ public class Furgoneta extends Vehiculo {
     private int volumen;
 
     //Constructor parametrizado
-    public Furgoneta(long bastidor, String matricula, String marca, String modelo, String color, double tarifa, int carga, int volumen) {
+    public Furgoneta(Long bastidor, String matricula, String marca, String modelo, String color, double tarifa, int carga, int volumen) {
         super(bastidor, matricula, marca, modelo, color, tarifa); // Constructor padre
         this.carga = carga;
         this.volumen = volumen;

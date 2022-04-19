@@ -1,4 +1,4 @@
-package ej2vehiculos;
+package ej4ficherosvehiculos;
 
 /**
  *
@@ -11,7 +11,7 @@ public class Turismo extends Vehiculo {
     private boolean marchaAutomatica;
 
     //Constructor parametrizado
-    public Turismo(int puertas, boolean marchaAutomatica, long bastidor, String matricula, String marca, String modelo, String color, double tarifa) {
+    public Turismo(int puertas, boolean marchaAutomatica, Long bastidor, String matricula, String marca, String modelo, String color, double tarifa) {
         super(bastidor, matricula, marca, modelo, color, tarifa);
         this.puertas = puertas;
         this.marchaAutomatica = marchaAutomatica;
