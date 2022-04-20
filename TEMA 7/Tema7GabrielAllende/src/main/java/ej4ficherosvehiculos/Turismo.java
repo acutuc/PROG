@@ -31,7 +31,7 @@ public class Turismo extends Vehiculo {
     public String getAtributos() {
     // Llamada al método getAtributos() de la clase Vehiculo y
     // concateno los atributos de la superclase con los de la subclase
-        return super.getAtributos() + " Puertas: " + this.puertas + " Marcha automática: " + this.marchaAutomatica;
+        return super.getAtributos() + ":" + this.puertas + ":" + this.marchaAutomatica;
     }
 
 }

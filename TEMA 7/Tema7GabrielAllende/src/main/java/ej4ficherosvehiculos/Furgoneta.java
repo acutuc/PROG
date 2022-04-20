@@ -29,7 +29,7 @@ public class Furgoneta extends Vehiculo {
 
     @Override
     public String getAtributos() {
-        return super.getAtributos() + " Carga (kg): " + this.carga + " Volumen (m3): " + this.volumen;
+        return super.getAtributos() + ":" + this.carga + ":" + this.volumen;
     }
 
 }

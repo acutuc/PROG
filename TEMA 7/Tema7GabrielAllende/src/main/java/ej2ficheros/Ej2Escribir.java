@@ -35,9 +35,10 @@ public class Ej2Escribir {
                     break;
                 }
                 //Vuelco las entradas de teclado en líneas con su correspondiente salto.
-                flujo.write(tmp + "\n");
+                flujo.write(tmp);
+                flujo.newLine();
             } while (!tmp.equalsIgnoreCase("eof"));
-            // Metodo fluh() guarda cambios en disco 
+            // Metodo flush() guarda cambios en disco 
             flujo.flush();
             System.out.println("Fichero " + idFichero + " creado correctamente.");
         } catch (IOException e) {
