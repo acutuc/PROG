@@ -9,6 +9,11 @@ public class Vehiculo {
     private String color;
     private double tarifa;
     private boolean disponible;
+    
+    //Constructor por defecto.
+    public Vehiculo() {
+    }
+    
 
     // el método constructor de la clase Vehiculo 
     public Vehiculo(long bastidor, String matricula, String marca, String modelo, String color, double tarifa) {

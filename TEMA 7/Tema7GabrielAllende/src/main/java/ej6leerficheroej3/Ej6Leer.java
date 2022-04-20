@@ -17,8 +17,8 @@ public class Ej6Leer {
         String idFichero = "ej3.txt";
         String linea;
         String[] tokens;
-        
-        try ( Scanner datosFichero = new Scanner(new File(idFichero), "UTF-8")) {
+
+        try (Scanner datosFichero = new Scanner(new File(idFichero), "UTF-8")) {
             // hasNextLine devuelve true mientras haya líneas por leer
             while (datosFichero.hasNextLine()) {
                 // Guarda la línea completa en un String
@@ -26,10 +26,22 @@ public class Ej6Leer {
                 // Se guarda en el array de String cada elemento de la
                 // línea en función del carácter separador de campos del fichero
                 tokens = linea.split(";");
-                for (String string : tokens) {
-                    System.out.print(string + ";");
+                //Bucle en el que itero en todas las posiciones del array y voy imprimiendo.
+                for (int i = 0; i < tokens.length; i++) {
+                    System.out.print(tokens[i] + ";");
                 }
+                
                 System.out.println();
+                //Bucle en el que itero en todas las possiciones del array y compruebo si se cumple la
+                //ocurrencia descrita en el título del ejercicio.
+                for (int i = 0; i < tokens.length; i++) {
+                    if (tokens[i].equals("w") && tokens[i + 1].equals("e") && tokens[i + 2].equals("b")) {
+                        System.out.println("----------------------------------------------------------------------------------------------------------------------------"
+                                + "\n \'w\' encontrada en la posición " + i + ", \'e\' encontrada en la posición " + (i + 1)
+                                + ", \'b\' encontrada en la posición " + (i + 2) + 
+                                "\n----------------------------------------------------------------------------------------------------------------------------");
+                    }
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
