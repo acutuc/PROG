@@ -27,10 +27,9 @@ public class Ej6Leer {
                 // línea en función del carácter separador de campos del fichero
                 tokens = linea.split(";");
                 //Bucle en el que itero en todas las posiciones del array y voy imprimiendo.
-                for (int i = 0; i < tokens.length; i++) {
-                    System.out.print(tokens[i] + ";");
+                for (String token : tokens) {
+                    System.out.print(token + ";");
                 }
-                
                 System.out.println();
                 //Bucle en el que itero en todas las possiciones del array y compruebo si se cumple la
                 //ocurrencia descrita en el título del ejercicio.
