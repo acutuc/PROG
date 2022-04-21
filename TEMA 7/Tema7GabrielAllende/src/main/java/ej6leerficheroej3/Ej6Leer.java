@@ -33,7 +33,7 @@ public class Ej6Leer {
                 System.out.println();
                 //Bucle en el que itero en todas las possiciones del array y compruebo si se cumple la
                 //ocurrencia descrita en el título del ejercicio.
-                for (int i = 0; i < tokens.length; i++) {
+                for (int i = 0; i < tokens.length-2; i++) {
                     if (tokens[i].equals("w") && tokens[i + 1].equals("e") && tokens[i + 2].equals("b")) {
                         System.out.println("----------------------------------------------------------------------------------------------------------------------------"
                                 + "\n \'w\' encontrada en la posición " + i + ", \'e\' encontrada en la posición " + (i + 1)
