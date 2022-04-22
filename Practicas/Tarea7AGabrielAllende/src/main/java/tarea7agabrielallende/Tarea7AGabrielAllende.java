@@ -68,7 +68,7 @@ public class Tarea7AGabrielAllende {
                 aux.setEvaluador(Boolean.getBoolean(tokens[6]));
                 aux.setCoordinador(Boolean.getBoolean(tokens[7]));
                 listaEmpleados.add(aux);
-                System.out.println();
+                System.out.println(linea);
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
@@ -127,6 +127,9 @@ public class Tarea7AGabrielAllende {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        
+        System.out.println("\nPROBANDO");
+        System.out.println(Utils.listaLetraNIF(listaEmpleados, 's'));
     }
 
     //Método que devuelve un Map.
