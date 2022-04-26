@@ -17,9 +17,21 @@ public class Turismo extends Vehiculo {
         this.marchaAutomatica = marchaAutomatica;
     }
     
-    //Getters 
+    //Constructor con sus atributos por defecto.
+    public Turismo(){
+    }
+    
+    //Getters y setters
     public int getPuertas() {
         return puertas;
+    }
+
+    public void setPuertas(int puertas) {
+        this.puertas = puertas;
+    }
+
+    public void setMarchaAutomatica(boolean marchaAutomatica) {
+        this.marchaAutomatica = marchaAutomatica;
     }
 
     public boolean isMarchaAutomatica() {

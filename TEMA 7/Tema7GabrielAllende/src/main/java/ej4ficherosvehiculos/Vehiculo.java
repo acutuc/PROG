@@ -79,6 +79,12 @@ public class Vehiculo {
         this.disponible = disponible;
     }
 
+    public Long getBastidor() {
+        return bastidor;
+    }
+    
+    
+
     public String getAtributos() {
         return bastidor + ":" + matricula + ":" + marca + ":" + modelo + ":" + color + ":" + tarifa + ":" + disponible;
     }

@@ -14,11 +14,20 @@ public class Deportivo extends Vehiculo{
         super(bastidor, matricula, marca, modelo, color, tarifa);
         this.cilindrada = cilindrada;
     }
+    
+    //Constructor con sus atributos por defecto.
+    public Deportivo(){
+    }
 
-    //Getter
+    //Getter y setters.
     public int getCilindrada() {
         return cilindrada;
     }
+
+    public void setCilindrada(int cilindrada) {
+        this.cilindrada = cilindrada;
+    }
+    
 
     @Override
     public String getAtributos() {

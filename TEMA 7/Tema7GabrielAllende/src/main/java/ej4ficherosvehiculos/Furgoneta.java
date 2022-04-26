@@ -16,9 +16,12 @@ public class Furgoneta extends Vehiculo {
         this.carga = carga;
         this.volumen = volumen;
     }
+    
+    //Constructor con sus atributos por defecto
+    public Furgoneta(){
+    }
 
-    //Getters 
-    // métodos ‘get’ de la subclase Furgoneta. Se omiten setters
+    //Getters y setters.
     public int getCarga() {
         return this.carga;
     }
@@ -26,6 +29,16 @@ public class Furgoneta extends Vehiculo {
     public int getVolumen() {
         return this.volumen;
     }
+
+    public void setCarga(int carga) {
+        this.carga = carga;
+    }
+
+    public void setVolumen(int volumen) {
+        this.volumen = volumen;
+    }
+    
+    
 
     @Override
     public String getAtributos() {
