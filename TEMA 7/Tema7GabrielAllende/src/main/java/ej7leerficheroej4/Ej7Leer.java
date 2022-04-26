@@ -30,46 +30,27 @@ public class Ej7Leer {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         //ArrayList en el que almacenaré todos los objetos de tipo Vehiculo.
         ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
-        Vehiculo aux = new Vehiculo();
 
         String idFichero = "vehiculos.txt";
         String[] tokens;
         String linea;
-        FileReader fr = new FileReader(idFichero);
 
-        //try-with-resources para leer el fichero "RelPerCen.csv".
-        try (Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
-            //Omito la primera línea (encabezado de atributos en el CSV)
-            datosFichero.nextLine();
+        //try-with-resources para leer el fichero "vehiculos.txt".
+        try (Scanner datosFichero = new Scanner(new File(idFichero), "UTF-8")) {
             // hasNextLine devuelve true mientras haya líneas por leer
             while (datosFichero.hasNextLine()) {
                 // Guarda la línea completa en un String
                 linea = datosFichero.nextLine();
                 // Se guarda en el array de String cada elemento de la
                 // línea en función del carácter separador de campos del fichero CSV
-                //Con el valor '1', suprimo las comillas dobles de la primera posición de la línea.
-                //Con el valor 'linea.length()-1' suprimo las comillas dobles de la última posición de la línea.
-                tokens = linea.substring(1, linea.length() - 1).split("\",\"");
-
-                //Creo un Empleado auxiliar en el que introduciré todos los datos mediante los setters.
-                Vehiculo v1 = new Vehiculo();
-                //Almaceno en cada atributo, la posición del array de tokens
-                
-                listaVehiculos.add(v1);
+                tokens = linea.substring(4, linea.length()-1).split(":");
+                for (String string : tokens) {
+                    System.out.print(string + "\t");
+                }
                 System.out.println();
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        Comparator<Vehiculo> criterioMarca = (v1, v2) -> v1.getMarca().compareTo(v2.getMarca());
-        Collections.sort(listaVehiculos, criterioMarca);
-        System.out.println("\nIMPRIMIENDO VEHICULOS ORDENADOS POR MARCA");
-        for (Vehiculo veh : listaVehiculos) {
-            veh.getAtributos();
-        }
-        
-        
-        
     }
-
 }

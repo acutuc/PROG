@@ -15,7 +15,7 @@ public class Utils {
     //A partir de una lista de empleados y un nombre, indique si hay algún empleado con ese nombre.
     public static boolean hayEmpleado(ArrayList<Empleado> listaEmpleados, String nomEmpleado) {
         for (Empleado emp : listaEmpleados) {
-            if (emp.getNomEmpleado().equals(nomEmpleado)) {
+            if (emp.getNomEmpleado().equalsIgnoreCase(nomEmpleado)) {
                 return true;
             }
         }
@@ -23,15 +23,15 @@ public class Utils {
     }
 
     //A partir de una lista de empleados y un nombre de departamento, indique el número de empleados Coordinadores de ese departamento.
-//    public int coordinadoresPorDepartamento(ArrayList<Empleado> listaEmpleados, String nomDpto) {
-//        int contadorCoordinadores = 0;
-//        Map<String, Integer> coordinadoresPorDpto = new TreeMap<>();
-//        for (Empleado emp : listaEmpleados) {
-//            if (emp.getPuesto().equals(nomDpto)) {
-//
-//            }
-//        }
-//    }
+    public int coordinadoresPorDepartamento(ArrayList<Empleado> listaEmpleados, String nomDpto) {
+        int contadorCoordinadores = 0;
+        for (Empleado emp : listaEmpleados) {
+            if(emp.getPuesto().equalsIgnoreCase(nomDpto) && emp.isCoordinador()){
+                contadorCoordinadores++;
+            }
+        }
+        return contadorCoordinadores;
+    }
 
     /*A partir de una lista de empleados y una letra del NIF (char),
     obtener una nueva lista ordenada alfabéticamente SOLO con los apellidos de los empleados cuyo NIF contenga esa letra.*/
@@ -42,12 +42,11 @@ public class Utils {
         ArrayList<String> apellidoLetraNIF = new ArrayList<>();
         int num = 0;
         int num2 = 0;
-        letra = (char) num;
+        letra = (char) num; //Conversión explícita.
                 
 
         /*Bucle que recorre la lista pasada por parámetro, de la cual coge el número identificativo
         (DNI/Pasaporte) de cada empleado y las almacena en el array de char.
-        Hace lo mismo con 
          */
         for (Empleado emp : listaEmpleados) {
             arrayLetras = emp.getNumIdentificativo().toCharArray();

@@ -65,8 +65,12 @@ public class Tarea7AGabrielAllende {
                     aux.setFecCesePuesto(LocalDate.parse(tokens[4], DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 }
                 aux.setTelefono(tokens[5]);
-                aux.setEvaluador(Boolean.getBoolean(tokens[6]));
-                aux.setCoordinador(Boolean.getBoolean(tokens[7]));
+                if(tokens[6].equalsIgnoreCase("sí")){
+                    aux.setEvaluador(true);
+                }
+                if(tokens[7].equalsIgnoreCase("sí")){
+                    aux.setCoordinador(true);
+                }
                 listaEmpleados.add(aux);
                 System.out.println(linea);
             }
