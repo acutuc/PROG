@@ -37,13 +37,13 @@ public class Turismo extends Vehiculo {
     public boolean isMarchaAutomatica() {
         return marchaAutomatica;
     }
-    
 
     @Override
-    public String getAtributos() {
-    // Llamada al método getAtributos() de la clase Vehiculo y
-    // concateno los atributos de la superclase con los de la subclase
-        return super.getAtributos() + ":" + this.puertas + ":" + this.marchaAutomatica;
+    public String toString() {
+        return super.toString()+ ":" + this.puertas + ":" + this.marchaAutomatica;
     }
+    
+
+    
 
 }

@@ -82,10 +82,9 @@ public class Vehiculo {
     public Long getBastidor() {
         return bastidor;
     }
-    
-    
 
-    public String getAtributos() {
+    @Override
+    public String toString() {
         return bastidor + ":" + matricula + ":" + marca + ":" + modelo + ":" + color + ":" + tarifa + ":" + disponible;
     }
 

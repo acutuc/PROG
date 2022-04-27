@@ -37,12 +37,10 @@ public class Furgoneta extends Vehiculo {
     public void setVolumen(int volumen) {
         this.volumen = volumen;
     }
-    
-    
 
     @Override
-    public String getAtributos() {
-        return super.getAtributos() + ":" + this.carga + ":" + this.volumen;
+    public String toString() {
+        return super.toString()+ ":" + this.carga + ":" + this.volumen;
     }
-
+    
 }

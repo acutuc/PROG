@@ -34,15 +34,11 @@ public class Ej9Escribir {
         String ficherosDeportivos = "deportivos.csv";
         String ficherosFurgonetas = "furgonetas.csv";
 
-        
-        
-        
-
         String[] tokens;
         String linea;
 
         //try-with-resources para leer el fichero "vehiculos.txt".
-        try (Scanner datosFichero = new Scanner(new FileReader(idFichero))) {
+        try ( Scanner datosFichero = new Scanner(new FileReader(idFichero))) {
             while (datosFichero.hasNextLine()) {
 
                 linea = datosFichero.nextLine();
@@ -52,7 +48,7 @@ public class Ej9Escribir {
                 tokens = linea.substring(4).split(":");
 
                 if (linea.charAt(0) == '0') {
-Turismo t1 = new Turismo();
+                    Turismo t1 = new Turismo();
                     t1.setBastidor(Long.parseLong(tokens[0]));
                     t1.setMatricula(tokens[1]);
                     t1.setMarca(tokens[2]);
@@ -93,9 +89,9 @@ Turismo t1 = new Turismo();
 
             }
         }
-        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(ficheroTurismos))) {
+        try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(ficheroTurismos))) {
             for (Turismo tur : listaTurismos) {
-                flujo.write(tur.getBastidor() + ";" + tur.getMatricula() + ";" + tur.getMarca() + tur.getModelo() + ";"
+                flujo.write(tur.getBastidor() + ";" + tur.getMatricula() + ";" + tur.getMarca() + ";" + tur.getModelo() + ";"
                         + tur.getColor() + ";" + tur.getTarifa() + ";" + tur.isDisponible() + ";" + tur.getPuertas() + ";"
                         + tur.isMarchaAutomatica());
                 flujo.newLine();
@@ -107,9 +103,9 @@ Turismo t1 = new Turismo();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(ficherosDeportivos))) {
+        try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(ficherosDeportivos))) {
             for (Deportivo dep : listaDeportivos) {
-                flujo.write(dep.getBastidor() + ";" + dep.getMatricula() + ";" + dep.getMarca() + dep.getModelo() + ";"
+                flujo.write(dep.getBastidor() + ";" + dep.getMatricula() + ";" + dep.getMarca() + ";" + dep.getModelo() + ";"
                         + dep.getColor() + ";" + dep.getTarifa() + ";" + dep.isDisponible() + ";" + dep.getCilindrada());
                 flujo.newLine();
             }
@@ -119,11 +115,11 @@ Turismo t1 = new Turismo();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(ficherosFurgonetas))) {
+        try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(ficherosFurgonetas))) {
             for (Furgoneta fur : listaFurgonetas) {
-                flujo.write(fur.getBastidor() + ";" + fur.getMatricula() + ";" + fur.getMarca() + fur.getModelo() + ";"
-                        + fur.getColor() + ";" + fur.getTarifa() + ";" + fur.isDisponible() + ";" + fur.getCarga() + ";" + 
-                        fur.getVolumen());
+                flujo.write(fur.getBastidor() + ";" + fur.getMatricula() + ";" + fur.getMarca() + ";" + fur.getModelo() + ";"
+                        + fur.getColor() + ";" + fur.getTarifa() + ";" + fur.isDisponible() + ";" + fur.getCarga() + ";"
+                        + fur.getVolumen());
                 flujo.newLine();
             }
             // Metodo flush() guarda cambios en disco 

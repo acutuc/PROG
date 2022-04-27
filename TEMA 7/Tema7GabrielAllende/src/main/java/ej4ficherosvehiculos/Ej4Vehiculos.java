@@ -105,13 +105,13 @@ public class Ej4Vehiculos {
         try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(idFichero))) {
             for (Vehiculo veh : listaVehiculos) {
                 if (veh instanceof Turismo) {
-                    flujo.write("0 - " + veh.getAtributos());
+                    flujo.write("0 - " + veh.toString());
                     flujo.newLine();
                 } else if (veh instanceof Deportivo) {
-                    flujo.write("1 - " + veh.getAtributos());
+                    flujo.write("1 - " + veh.toString());
                     flujo.newLine();
                 } else {
-                    flujo.write("2 - " + veh.getAtributos());
+                    flujo.write("2 - " + veh.toString());
                     flujo.newLine();
                 }
             }
