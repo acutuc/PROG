@@ -1,8 +1,5 @@
 package ej10leercopiar;
 
-import ej4ficherosvehiculos.Deportivo;
-import ej4ficherosvehiculos.Furgoneta;
-import ej4ficherosvehiculos.Turismo;
 import ej4ficherosvehiculos.Vehiculo;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -44,11 +40,9 @@ public class Ej10LeerCopiar {
         ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
 
         //Nombre de los ficheros.
-        String idFichero = "vehiculos.txt";
         String ficheroTurismos = "turismos.csv";
         String ficherosDeportivos = "deportivos.csv";
         String ficherosFurgonetas = "furgonetas.csv";
-        int contador = 0;
         //Variables para utilizar en los try-with-resources.
         String[] tokens;
         String linea;
@@ -159,15 +153,18 @@ public class Ej10LeerCopiar {
         //Imprime por pantalla todos los coches blancos, distintos, ordenador por matrícula.
         List<Vehiculo> cochesBlancos = listaVehiculos.stream()
                 .filter(v->v.getColor().equalsIgnoreCase("blanco")) //Stream de vehículos de color blanco. FILTRA.
-                .sorted((v1, v2)->v1.getMatricula().compareTo(v2.getMatricula())) //Stream de vehiculos ordenados por matrícula. ORDENA.
+                .sorted((v1, v2)->v1.getMatricula().compareTo(v2.getMatricula()))//Stream de vehiculos ordenados por matrícula. ORDENA.
+                .distinct() //Distintos.
                 .collect(Collectors.toList()); //Devuelve una colección de tipo List, con el stream anterior concatenado. ALMACENA/TRANSFORMA.
         
         System.out.println("\nImprimiendo lista de coches blancos, ordenados por matrícula: ");
         cochesBlancos.forEach(System.out::println);
         
         //Imprime por pantalla todas las marcas de coches distintas de aquellos coches que estén disponibles.
-        List<Vehiculo> marcasCochesDisponibles = listaVehiculos.stream()
-                .filter(v->v.isDisponible())
+        List<String> marcasCochesDisponibles = listaVehiculos.stream()
+                .filter(v->v.isDisponible())//Filtrado por disponibles.
+                .map(v->v.getMarca())//Mapeo de Stream de tipo Vehiculo a String.
+                .distinct()//Distintos
                 .collect(Collectors.toList()); 
         
         System.out.println("\nImprimiendo lista de coches disponibles, de distintas marcas: ");
@@ -176,17 +173,13 @@ public class Ej10LeerCopiar {
         //Saber la cantidad de vehículos Citroen.
         long cantidadCitroen = listaVehiculos.stream()
                 .filter(v->v.getMarca().equalsIgnoreCase("Citroen"))
-                .count();
-        
+                .count();//Cuenta. Devuelve long
         System.out.println("\nImprimiendo cantidad de coches Citroen: " + cantidadCitroen);
         
         //Comprueba si hay algún Peugeot negro disponible en la lista
-        List<Vehiculo> listaPeugeots = listaVehiculos.stream()
-                .filter(v->v.getMarca().equalsIgnoreCase("peugeot") && v.getColor().equalsIgnoreCase("negro"))
-                .collect(Collectors.toList());
-        
-        System.out.println("\nImprimiendo lista de Peugeot's negros:");
-        listaPeugeots.forEach(System.out::println);
+        boolean hayPeugeot = listaVehiculos.stream()
+                .anyMatch(v->v.getMarca().equalsIgnoreCase("peugeot") && v.getColor().equalsIgnoreCase("negro"));
+        System.out.println("\nHay Peugeot: " + hayPeugeot);
     }
 
     //Método para crear un directorio.
