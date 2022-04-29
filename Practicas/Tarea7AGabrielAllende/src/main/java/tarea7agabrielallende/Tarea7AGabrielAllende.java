@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -133,7 +134,13 @@ public class Tarea7AGabrielAllende {
         }
         
         System.out.println("\nPROBANDO");
-        System.out.println(Utils.listaLetraNIF(listaEmpleados, 's'));
+        UtilsStream.hayEmpleado(listaEmpleados, "Carlos");
+        System.out.println("\n------------------------------------------------------------");
+        UtilsStream.coordinadoresPorDepartamento(listaEmpleados, "Matemáticas");
+        System.out.println("\n------------------------------------------------------------");
+        UtilsStream.listaLetraNIF(listaEmpleados, 'X');
+        System.out.println("\n------------------------------------------------------------");
+        UtilsStream.obtenerListaFecha(listaEmpleados, LocalDate.of(2000, Month.MARCH, 10));
     }
 
     //Método que devuelve un Map.
