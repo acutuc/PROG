@@ -1,50 +1,50 @@
-1;app1h;Esto es una demo 5;908.6897836691658;29000
-2;app2x;Esto es una demo 5;668.2851505740712;29185
-3;app3i;Esto es una demo 5;262.9972410688771;30551
-4;app4t;Esto es una demo 5;207.39010074571485;42579
-5;app5c;Esto es una demo 2;609.2043044864171;3975
-6;app6l;Esto es una demo 4;507.95602812202895;1910
-7;app7s;Esto es una demo 9;390.65499967590364;35931
-8;app8n;Esto es una demo 5;269.17023308306943;37798
-9;app9v;Esto es una demo 9;431.88735264325715;7926
-10;app10p;Esto es una demo 5;972.6193385722387;27418
-11;app11p;Esto es una demo 5;961.8477304657602;18592
-12;app12p;Esto es una demo 9;521.1178173265746;20384
-13;app13u;Esto es una demo 1;843.3743500943995;4540
-14;app14h;Esto es una demo 1;574.7754428936171;47680
-15;app15c;Esto es una demo 4;302.7407565803486;33204
-16;app16q;Esto es una demo 5;911.8866179205038;17277
-17;app17g;Esto es una demo 1;725.4441866377564;13585
-18;app18x;Esto es una demo 9;893.2010868712294;11139
-19;app19o;Esto es una demo 5;438.60877629972276;2740
-20;app20y;Esto es una demo 4;613.453910547731;10089
-21;app21t;Esto es una demo 2;139.94893675578686;15600
-22;app22f;Esto es una demo 1;703.3903292407322;48312
-23;app23j;Esto es una demo 2;312.2043922331329;27814
-24;app24h;Esto es una demo 10;262.6202253802772;41471
-25;app25u;Esto es una demo 6;927.7149899758019;18054
-26;app26t;Esto es una demo 4;919.9767230765794;24212
-27;app27o;Esto es una demo 7;273.4509782526693;21552
-28;app28m;Esto es una demo 8;873.2332873504071;40377
-29;app29t;Esto es una demo 8;423.45215013570487;20072
-30;app30i;Esto es una demo 9;212.25436389882736;30514
-31;app31u;Esto es una demo 2;762.6581426077975;5215
-32;app32s;Esto es una demo 2;188.01680566473897;35414
-33;app33a;Esto es una demo 4;598.6314086340777;34574
-34;app34i;Esto es una demo 10;197.1403112446028;23020
-35;app35z;Esto es una demo 10;518.8837513799349;9892
-36;app36d;Esto es una demo 5;407.30861153267307;25054
-37;app37a;Esto es una demo 10;653.4185735935166;3187
-38;app38k;Esto es una demo 1;532.7461279856224;24907
-39;app39a;Esto es una demo 5;800.1915487295746;41005
-40;app40t;Esto es una demo 6;802.6385691239104;27
-41;app41k;Esto es una demo 6;452.17426034875746;6416
-42;app42r;Esto es una demo 9;506.65092709143966;19354
-43;app43l;Esto es una demo 8;155.17793187529725;39912
-44;app44m;Esto es una demo 1;703.7011787163424;8254
-45;app45p;Esto es una demo 3;843.557101589665;10774
-46;app46w;Esto es una demo 5;841.4936770048866;43283
-47;app47d;Esto es una demo 10;556.0668690616044;16188
-48;app48j;Esto es una demo 10;690.2032075430209;48855
-49;app49a;Esto es una demo 6;998.7914055041884;14120
-50;app50v;Esto es una demo 6;595.6271209039855;20372
+1;app1y;Hola;585.0380777227051;9502
+2;app2c;Gabriel Allende ha creado esta app;990.9553608545015;22941
+3;app3m;Con esta app te voy a hackear el ordenador, Vico;850.462689361516;26447
+4;app4q;Con esta app te voy a hackear el ordenador, Vico;685.4996308152973;8309
+5;app5u;Hola;431.8353112145271;11691
+6;app6n;¡Ha gandado 10.000.000€ gracias a esta app!;793.4992185056511;29079
+7;app7y;¡Ha gandado 10.000.000€ gracias a esta app!;126.84296300455415;39322
+8;app8x;Con esta app te voy a hackear el ordenador, Vico;174.52465406143176;6833
+9;app9l;Gabriel Allende ha creado esta app;999.6774581039521;32659
+10;app10b;Con esta app puedes dominar el mundo;363.01474320647776;40265
+11;app11i;Desinstale esta app;747.3849070430159;20529
+12;app12b;Con esta app puedes dominar el mundo;591.6683976394486;10660
+13;app13q;Con esta app te voy a hackear el ordenador, Vico;632.8000663542306;19040
+14;app14w;Con esta app te voy a hackear el ordenador, Vico;409.63961329685424;27609
+15;app15w;Hola;113.63426783887083;14555
+16;app16i;Gabriel Allende ha creado esta app;405.1517719623979;13795
+17;app17z;Gabriel Allende ha creado esta app;651.378066208206;35580
+18;app18r;Con esta app te voy a hackear el ordenador, Vico;506.0975144082448;20483
+19;app19r;App en fase de desarrollo;127.01277823273446;7060
+20;app20d;Esta app puede ser perjudicial para su salud;744.1316408956591;18681
+21;app21s;¿Esto es una app?;236.99975925133037;1068
+22;app22k;Hola;138.49687874112328;43568
+23;app23n;Con esta app tiene aprobado el FP;234.12962633305995;22423
+24;app24x;Esta app puede ser perjudicial para su salud;601.1433279789082;8187
+25;app25z;Con esta app puedes dominar el mundo;854.0701943910248;99
+26;app26t;Gabriel Allende ha creado esta app;886.8170911929244;9634
+27;app27a;Con esta app tiene aprobado el FP;941.1465196192571;27777
+28;app28i;Esta app puede ser perjudicial para su salud;248.39570561486568;24519
+29;app29k;Hola;645.8236052932672;6099
+30;app30o;Con esta app puedes dominar el mundo;627.6432942904987;40950
+31;app31g;¿Esto es una app?;661.6389199556226;5014
+32;app32w;App en fase de desarrollo;641.6425559807094;2690
+33;app33c;Con esta app puedes dominar el mundo;135.05015183652003;8849
+34;app34b;Con esta app te voy a hackear el ordenador, Vico;453.93650567042135;48790
+35;app35t;Con esta app te voy a hackear el ordenador, Vico;412.82087708371336;21619
+36;app36z;Gabriel Allende ha creado esta app;677.8790611025464;9486
+37;app37y;Desinstale esta app;130.26714273483464;15075
+38;app38k;Hola;880.8499390832715;32846
+39;app39v;App en fase de desarrollo;610.7261670065966;19343
+40;app40f;Con esta app puedes dominar el mundo;872.837200354883;9404
+41;app41d;App en fase de desarrollo;692.0895343599439;19406
+42;app42r;Desinstale esta app;177.52822200999094;37634
+43;app43e;Hola;320.76337627013424;18455
+44;app44t;Esta app puede ser perjudicial para su salud;1000.9790298718736;25361
+45;app45v;¡Ha gandado 10.000.000€ gracias a esta app!;1004.5800550412171;38096
+46;app46x;Con esta app puedes dominar el mundo;503.0506556144513;13127
+47;app47o;Hola;310.0873011857399;26918
+48;app48l;Desinstale esta app;726.011491315742;32504
+49;app49d;Con esta app te voy a hackear el ordenador, Vico;227.38394954065535;26666
+50;app50e;Con esta app te voy a hackear el ordenador, Vico;956.8047763602052;41699

@@ -1,17 +1,7 @@
 package tarea7bgabrielallende;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+
 import java.util.Random;
-import java.util.Scanner;
 import org.apache.commons.lang3.RandomStringUtils;
 
 /**
@@ -36,10 +26,10 @@ Además, incluye getters,  setters y el método toString(), de forma que devuelv
 - En una carpeta “./aplicaciones” crea un archivo de texto por cada aplicación que haya en la lista. El archivo se llamará igual que la app y contendrá los datos de la aplicación, separando los campos por el carácter (;).
  */
 //Definición de la clase
-public class App {
+public class App{
 
     //Atributos de la clase
-    private final int COD;
+    private int COD;
     private String nombre;
     private String descripcion;
     private double tamanio; //en Kb
@@ -50,11 +40,11 @@ public class App {
     //a elaborar el ejercicio.
     private static final Random aleatorio = new Random();
     //Array de tipo String, en la que almacenaré 10 descripciones que haya elegido yo.
-    private static final String[] DESCRIPCIONES = {"Esto es una demo 1", "Esto es una demo 2",
-        "Esto es una demo 3", "Esto es una demo 4",
-        "Esto es una demo 5", "Esto es una demo 6",
-        "Esto es una demo 7", "Esto es una demo 8",
-        "Esto es una demo 9", "Esto es una demo 10"};
+    private static final String[] DESCRIPCIONES = {"Con esta app puedes dominar el mundo", "App en fase de desarrollo",
+        "Esta app puede ser perjudicial para su salud", "¿Esto es una app?",
+        "Con esta app tiene aprobado el FP", "Con esta app te voy a hackear el ordenador, Vico",
+        "Desinstale esta app", "Gabriel Allende ha creado esta app",
+        "Hola", "¡Ha gandado 10.000.000€ gracias a esta app!"};
 
     //Constructor con sus atributos por defecto
     public App() {
@@ -80,9 +70,12 @@ public class App {
     }
 
     //Getters y setters
-    //COD tendrá solo getter.
     public int getCOD() {
         return COD;
+    }
+
+    public void setCOD(int COD) {
+        this.COD = COD;
     }
 
     public String getNombre() {
@@ -130,133 +123,10 @@ public class App {
     public String toString() {
         return COD + ";" + nombre + ";" + descripcion + ";" + tamanio + ";" + numDescargas;
     }
-
+    
     //Método que genera una descripción aleatoria
     public static String generarDescripcion() {
         return DESCRIPCIONES[aleatorio.nextInt(DESCRIPCIONES.length)];
-    }
-
-    //Método para crear un directorio.
-    public static void crearDirectorio(String rutaDirectorio) {
-        Path directorio = Paths.get(rutaDirectorio); //Ruta del directorio.
-        try {
-            Files.createDirectory(directorio);
-            System.out.println("Directorio creado correctamente.");
-        } catch (IOException e) {
-            System.out.println("Problema creando el directorio.");
-            System.out.println(e.toString());
-        }
-    }
-
-    //Método para copiar ficheros de una ruta a otra.
-    public static void copiarFicheros(String rutaOrigen, String rutaDestino) {
-        Path origen = Paths.get(rutaOrigen);
-        Path destino = Paths.get(rutaDestino);
-        try {
-            Files.copy(origen, destino);
-            System.out.println("Archivo copiado correctamente.");
-        } catch (IOException e) {
-            System.out.println("Problema copiando el archivo.");
-            System.out.println(e.toString());
-        }
-    }
-
-    //MAIN DE LA APLICACIÓN
-    public static void main(String[] args) throws FileNotFoundException {
-        //Crea 50 aplicaciones usando el constructor por defecto, guárdalas en una lista y muéstralas por pantalla. 
-        //Instancio un ArrayList de App
-        ArrayList<App> listaApps = new ArrayList<>();
-        //Bucle para crear 50 App y seguidamente almacenarlas en el ArrayList anterior.
-        for (int i = 0; i < 50; i++) {
-            App app = new App();
-            listaApps.add(app);
-        }
-        //Imprimo la lista.
-        listaApps.forEach(System.out::println);
-
-        //Guarda los datos de todas las App de la lista, en un fichero de texto llamado aplicacionestxt.txt, dentro del directorio “./appstxt”.
-        //Creo el directorio.
-        crearDirectorio("./appstxt/");
-
-        //ID del fichero .txt a escribir. Escribo la ruta del directorio creada anteriormente.
-        String idFicheroTxt = "./appstxt/aplicacionestxt.txt";
-
-        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(idFicheroTxt))) {
-            //Recorremos la lista y vamos escribiendo en el fichero los datos de cada objeto.
-            for (App app : listaApps) {
-                flujo.write(app.getCOD() + ";" + app.getNombre() + ";" + app.getDescripcion() + ";" + app.getTamanio() + ";"
-                        + app.getNumDescargas());
-                flujo.newLine();
-            }
-            flujo.flush();
-            System.out.println("Fichero " + idFicheroTxt + " creado correctamente.");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-        //Guarda los datos de todas las App de la lista, en un fichero XML llamado aplicacionesxml.xml, dentro del directorio “./appsxml”.
-        //Creo el directorio.
-        crearDirectorio("./appsxml/");
-        //ID del fichero .xml a escribir. Escribo la ruta del directorio creada anteriormente.
-        String idFicheroXml = "./appsxml/aplicacionesxml.xml";
-
-        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(idFicheroXml))) {
-            //Recorremos la lista y vamos escribiendo en el fichero los datos de cada objeto.
-            for (App app : listaApps) {
-                flujo.write(app.getCOD() + ";" + app.getNombre() + ";" + app.getDescripcion() + ";" + app.getTamanio() + ";"
-                        + app.getNumDescargas());
-                flujo.newLine();
-            }
-            flujo.flush();
-            System.out.println("Fichero " + idFicheroXml + " creado correctamente.");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-        //Guarda los datos de todas las App de la lista, en un fichero JSON llamado aplicacionesxml.json, dentro del directorio “./appsjson”.
-        //Creo el directorio.
-        crearDirectorio("./appsjson/");
-        //ID del fichero .json a escribir. Escribo la ruta del directorio creada anteriormente.
-        String idFicheroJson = "./appsjson/aplicacionesxml.json";
-
-        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(idFicheroJson))) {
-            //Recorremos la lista y vamos escribiendo en el fichero los datos de cada objeto.
-            for (App app : listaApps) {
-                flujo.write(app.getCOD() + ";" + app.getNombre() + ";" + app.getDescripcion() + ";" + app.getTamanio() + ";"
-                        + app.getNumDescargas());
-                flujo.newLine();
-            }
-            flujo.flush();
-            System.out.println("Fichero " + idFicheroJson + " creado correctamente.");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-        //Crea una carpeta “./copias” y realiza una copia de los ficheros anteriores dentro de ella.
-        //Creo el directorio "copias"
-        crearDirectorio("./copias");
-        //Copio los tres ficheros en la ruta creada anteriormente.
-        copiarFicheros(idFicheroJson, "copias/aplicacionesxml.json");
-        copiarFicheros(idFicheroTxt, "copias/aplicacionestxt.txt");
-        copiarFicheros(idFicheroXml, "copias/aplicacionesxml.xml");
-
-        //En una carpeta “./aplicaciones” crea un archivo de texto por cada aplicación que haya en la lista. El archivo se llamará igual que la app y contendrá los datos de la aplicación, separando los campos por el carácter (;).
-        //Creo el directorio "aplicaciones"
-        crearDirectorio("./aplicaciones");
-
-        for (int i = 0; i < listaApps.size(); i++) {
-            App aux = listaApps.get(i);
-            try (BufferedWriter flujo = new BufferedWriter(new FileWriter("./aplicaciones/" + aux.getNombre() + ".txt"))) {
-                //Recorremos la lista y vamos escribiendo en el fichero los datos de cada objeto.
-                flujo.write(aux.getCOD() + ";" + aux.getNombre() + ";" + aux.getDescripcion() + ";" + aux.getTamanio() + ";"
-                        + aux.getNumDescargas());
-                flujo.flush();
-                System.out.println("Fichero " + aux.getNombre() + " creado correctamente.");
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
     }
 
 }
