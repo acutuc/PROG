@@ -1,8 +1,15 @@
 package tarea7cgabrielallende;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.awt.GridLayout;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -85,7 +92,7 @@ d) Obtener en una lista las aulas donde imparte clase el profesor "JFV"
 e) Contar el número de asignaturas distintas que hay
 f) Contar el total de horas que se imparten a última hora de la mañana.
 g) Mostrar por consola los profesores que tienen clase a primera hora de la mañana.*/
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         //El fichero "horario.csv" estará en la  carpeta raíz del proyecto.
         String idFichero = "horario.csv";
 
@@ -167,18 +174,80 @@ g) Mostrar por consola los profesores que tienen clase a primera hora de la mañ
         //Variable auxiliar para salir del bucle.
         boolean aux = true;
 
-        //Copio el Set en un Array de Strings, para proseguir con el ejercicio       
+        //Copio los Set en un Array de Strings, para proseguir con el ejercicio, utilizando JOptionPane.
+        //Array de iniciales de profesor
         String[] arrayInicialesProfesor = Arrays.copyOf(inicialesSet.toArray(), inicialesSet.size(), String[].class);
+        //Array de aulas
+        String[] arrayGrupo = Arrays.copyOf(gruposSet.toArray(), gruposSet.size(), String[].class);
+        //Variable que utilizaré dentro del bucle do-while.
+        String opcion = "";
         do {
-            int opcionesInt = JOptionPane.showOptionDialog(null, "Seleccione una opción:", null, 0, 1, null, arrayOpciones, null);
+            int opcionesInt = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "ELEGIR", 0, 1, null, arrayOpciones, null);
             if (opcionesInt == 0) {
-                String opcion = (String) JOptionPane.showInputDialog(null, "Elija a un profesor: ", "ELEGIR", JOptionPane.QUESTION_MESSAGE, null, arrayInicialesProfesor, "asdas");
-                for (int i = 0; i < arrayInicialesProfesor.length; i++) {
-                    if(Integer.valueOf(i).equals(opcion)){
-                        System.out.println(arrayInicialesProfesor[i].toString());
+                //Conversión explícita de Object a String.
+                opcion = (String) JOptionPane.showInputDialog(null, "Elija a un profesor: ", "ELEGIR", JOptionPane.QUESTION_MESSAGE, null, arrayInicialesProfesor, null);
+                System.out.println("El profesor elegido es: " + opcion);
+                //Declaro la variable en la que almacenaré la ruta del fichero JSON, con las iniciales del profesor.
+                String idFicheroJson = opcion + ".json";
+                //Instancio nuevo ArrayList en el que almacenaré todos los objetos
+                ArrayList<Horario> guardarEnJSON = new ArrayList<>();
+                //En un bucle for, recorro la estructura ArrayList en la que tengo almacenado los
+                //profesores con sus atributos, comparando el atributo inicialesProf con el String devuelto tras haber
+                //hecho una elección en el JOptionPane.
+                for (Horario hor : listaHorario) {
+                    if (hor.getInicialesProf().equals(opcion)) {
+                        guardarEnJSON.add(hor);
                     }
-                    
+                    ObjectMapper mapeador = new ObjectMapper();
+
+                    // Permite a mapeador usar fechas según java time
+                    mapeador.registerModule(new JavaTimeModule());
+
+                    // Formato JSON bien formateado. Si se comenta, el fichero queda minificado
+                    mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
+
+                    // Escribe en un fichero JSON el objeto String.
+                    mapeador.writeValue(new File(idFicheroJson), guardarEnJSON);
                 }
+                //Salimos del bucle.
+                aux = false;
+                
+
+            } else if (opcionesInt == 1) {
+                opcion = (String) JOptionPane.showInputDialog(null, "Elija un grupo: ", "ELEGIR", JOptionPane.QUESTION_MESSAGE, null, arrayGrupo, null);
+                System.out.println("El grupo elegido es: " + opcion);
+                //Declaro la variable en la que almacenaré la ruta del fichero csv, con el dato del aula seleccionada.
+                String idFicheroCSV = opcion + ".csv";
+                //Instancio nuevo ArrayList en el que almacenaré todos los objetos
+                ArrayList<Horario> guardarEnCSV = new ArrayList<>();
+                //En un bucle for, recorro la estructura ArrayList en la que tengo almacenado los
+                //objetos tipo Horario, comparando el String del atributo curso, con el devuelto tras haber
+                //hecho una elección en el JOptionPane.
+                for (Horario hor : listaHorario) {
+                    if (hor.getCurso().equals(opcion)) {
+                        guardarEnCSV.add(hor);
+                    }
+                }
+                //Escribimos en un fichero CSV el objeto String seleccionado en el JOptionPane
+                try (BufferedWriter flujo = new BufferedWriter(new FileWriter(idFicheroCSV))) {
+                    for (Horario h : guardarEnCSV) {
+                        flujo.write(h.toString());
+                        flujo.newLine();
+                    }
+                    // Metodo flush() guarda cambios en disco 
+                    flujo.flush();
+
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+                System.out.println("Fichero " + idFicheroCSV + " creado correctamente.");
+                //Salimos del bucle.
+                aux = false;
+                
+
+            } else { //Si elegimos salir en el JOptionPane.
+                //Salimos del bucle.
+                aux = false;
             }
         } while (aux);
 
