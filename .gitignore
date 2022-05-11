@@ -1,6 +1,12 @@
 *.class
 *.lst
 *.netbeans_automatic_build
+*org.eclipse.jdt.core.prefs
+*org.elicpse.core.resources.prefs
+*.project
+*.gitignore
+*.classpath
+*private.properties
 
 /TEMA 7/tarea1GUIGabrielAllende/target/
 /TEMA 6/Tema6GabrielAllende/target/

@@ -100,6 +100,7 @@ public class MainParteB {
         List<String> d = listaHorario.stream()
                           .filter(hor->hor.getInicialesProf().equals("JFV"))
                           .map(hor->hor.getAula())
+                          .distinct()
                           .collect(Collectors.toList());
         System.out.println("d) Obtener en una lista las aulas donde imparte clase el profesor \"JFV\"");
         d.forEach(System.out::println);
