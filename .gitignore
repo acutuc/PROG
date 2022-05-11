@@ -2,7 +2,7 @@
 *.lst
 *.netbeans_automatic_build
 *org.eclipse.jdt.core.prefs
-*org.elicpse.core.resources.prefs
+*org.eclipse.core.resources.prefs
 *.project
 *.gitignore
 *.classpath
