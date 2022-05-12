@@ -11,10 +11,10 @@ Un Cliente alquila UN Vehiculo, un Vehiculo es reparado por VARIOS Mecánicos
 */
 CREATE TABLE IF NOT EXISTS clientes
 	(codcli int,
-	nombre varchar(50),
-	apellido1 varchar(50),
-	apellido2 varchar(50),
-	telefono char(9),
+	nomcli varchar(50),
+	ape1cli varchar(50),
+	ape2cli varchar(50),
+	telcli char(9),
 		constraint pk_clientes primary key (codcli)
 	);
 CREATE TABLE IF NOT EXISTS vehiculos
@@ -29,3 +29,14 @@ CREATE TABLE IF NOT EXISTS vehiculos
 				on delete no action on update cascade
 	);
     
+CREATE TABLE IF NOT EXISTS mecanicos
+	(codmec int,
+    matricula char(8),
+    nommec varchar(20),
+    ape1mec varchar(20),
+    ape2mec varchar(20),
+		constraint pk_mecanicos primary key (codmec, matricula),
+        constraint fk_vehiculos_mecanicos foreign key (matricula)
+			references vehiculos
+				on delete no action on update cascade
+	);

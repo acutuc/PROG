@@ -7,7 +7,7 @@ package juego;
 
 /**
  *
- * @author Cris
+ * @author acutuc
  */
 public enum Palos {
     BASTOS, 
