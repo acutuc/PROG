@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS clientes
 	);
 CREATE TABLE IF NOT EXISTS vehiculos
 	(matricula char(8),
+    codcli int,
     marca varchar(20),
     modelo varchar(20),
     puertas tinyint,
