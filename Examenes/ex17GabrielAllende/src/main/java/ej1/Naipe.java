@@ -1,7 +1,6 @@
 package ej1;
 
 import java.util.Objects;
-import java.util.Random;
 
 /**
  *
@@ -12,17 +11,23 @@ public class Naipe {
 
     //Atributos de la clase.
     private Palos palo;
-    private int numero;
-    private Random random;
+    private String numero;
 
     //Constructor por defecto.
     public Naipe() {
     }
 
     //Constructor parametrizado.
-    public Naipe(Palos palo, int numero) {
-        if (numero <= 12) {
-            this.numero = numero;
+    public Naipe(Palos palo, String numero) {
+        this.numero = numero;
+        if (this.numero.equalsIgnoreCase("11")) {
+            this.numero = "J";
+        } else if (this.numero.equalsIgnoreCase("12")) {
+            this.numero = "Q";
+        } else if (this.numero.equalsIgnoreCase("13")) {
+            this.numero = "K";
+        } else if (this.numero.equalsIgnoreCase("14")) {
+            this.numero = "A";
         }
         this.palo = palo;
     }
@@ -36,20 +41,29 @@ public class Naipe {
         this.palo = palo;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
+        if (this.numero.equalsIgnoreCase("11")) {
+            this.numero = "J";
+        } else if (this.numero.equalsIgnoreCase("12")) {
+            this.numero = "Q";
+        } else if (this.numero.equalsIgnoreCase("13")) {
+            this.numero = "K";
+        } else if (this.numero.equalsIgnoreCase("14")) {
+            this.numero = "A";
+        }
     }
 
     //hashCode()
-    @Override
+    @Override    
     public int hashCode() {
-        int hash = 5;
+        int hash = 3;
         hash = 29 * hash + Objects.hashCode(this.palo);
-        hash = 29 * hash + this.numero;
+        hash = 29 * hash + Objects.hashCode(this.numero);
         return hash;
     }
 
@@ -79,6 +93,6 @@ public class Naipe {
     //toString().
     @Override
     public String toString() {
-        return "Naipe{" + "palo=" + palo + ", numero=" + numero + '}';
+        return "Naipe{" + "palo=" + palo + ", numero=" + numero + "\n";
     }
 }

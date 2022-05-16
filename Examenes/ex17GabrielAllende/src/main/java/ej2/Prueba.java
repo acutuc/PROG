@@ -2,11 +2,9 @@ package ej2;
 
 import ej1.Naipe;
 import ej1.Palos;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -18,11 +16,8 @@ public class Prueba {
     /**
      * @param args the command line arguments
      */
-    private static Rondas ronda;
 
     public static void main(String[] args) throws FileNotFoundException {
-        //Instancio un nuevo objeto de tipo Ronda
-        ronda = new Rondas();
         
         ArrayList<Naipe> rondas = new ArrayList<>();
         
@@ -37,30 +32,47 @@ public class Prueba {
 
                 linea = datosFichero.nextLine();
                 //Quitamos todos los espacios.
-                linea = linea.replaceAll(" ", "").substring(0, 2);
-
-                // Se guarda en el array de String cada elemento de la
-                // línea en función del carácter separador coma
-                tokens = linea.split(";");
-
-                Naipe nai = new Naipe();
-                nai.setNumero(Integer.parseInt(tokens[0].substring(0, 2)));
-                if (tokens[1].equalsIgnoreCase("d")) {
-                    nai.setPalo(Palos.ROMBOS);
-                } else if (tokens[1].equalsIgnoreCase("t")) {
-                    nai.setPalo(Palos.TREBOLES);
-                } else if (tokens[1].equalsIgnoreCase("c")) {
-                    nai.setPalo(Palos.CORAZONES);
-                } else {
-                    nai.setPalo(Palos.PICAS);
-                }
+                //linea = linea.replaceAll(" ", "");
+                tokens = linea.split(" ");
                 
-                rondas.add(nai);
-
+                //En cada ronda habrán 4 cartas, por lo que instancio 4 cartas para ir asignándole los valores.
+                Naipe nai1 = new Naipe();
+                Naipe nai2 = new Naipe();
+                Naipe nai3 = new Naipe();
+                Naipe nai4 = new Naipe();                
+                
+                nai1.setNumero(tokens[0]);
+                nai1.setPalo(comprobarPalo(tokens[1]));
+                nai2.setNumero(tokens[2]);
+                nai2.setPalo(comprobarPalo(tokens[3]));
+                nai3.setNumero(tokens[4]);
+                nai3.setPalo(comprobarPalo(tokens[5]));
+                nai4.setNumero(tokens[6]);
+                nai4.setPalo(comprobarPalo(tokens[7]));
+                
+                
+                rondas.add(nai1);
+                rondas.add(nai2);
+                rondas.add(nai3);
+                rondas.add(nai4);
             }
         }
         
         rondas.forEach(System.out::println);
 
+    }
+    
+    private static Palos comprobarPalo (String palo){
+        Palos pa = null;
+        if(palo.equalsIgnoreCase("T")){
+            pa = Palos.TREBOLES;
+        }else if (palo.equalsIgnoreCase("C")){
+            pa = Palos.CORAZONES;
+        }else if (palo.equalsIgnoreCase("D")){
+            pa = Palos.ROMBOS;
+        }else if (palo.equalsIgnoreCase("P")){
+            pa = Palos.PICAS;
+        }
+        return pa;
     }
 }

@@ -1,6 +1,5 @@
 package ej1;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -22,5 +21,6 @@ public class Prueba {
         
         //Imprimo la baraja
         System.out.println(baraja.toString());
+        
     }
 }

@@ -1,7 +1,6 @@
 package ej1;
 
 import java.util.ArrayList;
-import java.util.TreeSet;
 
 /**
  *
@@ -22,25 +21,25 @@ public class Baraja {
             //RELLENO LA BARAJA CON PICAS
             Naipe pic = new Naipe();
             pic.setPalo(Palos.PICAS);
-            pic.setNumero(contador);
+            pic.setNumero(String.valueOf(contador));
             baraja.add(pic);
 
             //RELLENO LA BARAJA CON ROMBOS
             Naipe rom = new Naipe();
             rom.setPalo(Palos.ROMBOS);
-            rom.setNumero(contador);
+            rom.setNumero(String.valueOf(contador));
             baraja.add(rom);
 
             //RELLENO LA BARAJA CON TRÉBOLES
             Naipe tre = new Naipe();
             tre.setPalo(Palos.TREBOLES);
-            tre.setNumero(contador);
+            tre.setNumero(String.valueOf(contador));
             baraja.add(tre);
 
             //RELLENO LA BARAJA CON CORAZONES
             Naipe cor = new Naipe();
             cor.setPalo(Palos.CORAZONES);
-            cor.setNumero(contador);
+            cor.setNumero(String.valueOf(contador));
             baraja.add(cor);
 
             contador++;

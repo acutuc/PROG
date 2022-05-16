@@ -76,12 +76,12 @@ public class Ejercicio5 {
     public static Map<String, Double> precipitacionesPorEstacion(ArrayList<Registro> listaRegistro) {
         //Creo el Map vacío para hacer el return con los datos implementados.
         Map<String, Double> map = new TreeMap<>();
-        //Recorro con un bucle for la lista de Empleados
+        //Recorro con un bucle for la lista de Registros
         for (Registro reg : listaRegistro) {
             reg.getEstacionMeteorologica();
             reg.getPrecipitacion();
 
-            //Almaceno en el map el puest (String) y la cantidad de empleados (Integer).
+            //Almaceno en el map la estación y las precipitaciones.
             map.put(reg.getEstacionMeteorologica(), reg.getPrecipitacion());
         }
         return map;

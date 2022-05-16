@@ -27,7 +27,7 @@ public class MainRegistro {
 
         listaRegistro = mapeador.readValue(new File(idFichero),
                 mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Registro.class));
-        System.out.println("---- Catálogo de Muebles ----");
+        System.out.println("---- Registros de lluvias ----");
         for (Registro reg : listaRegistro) {
             System.out.println(reg);
         }
