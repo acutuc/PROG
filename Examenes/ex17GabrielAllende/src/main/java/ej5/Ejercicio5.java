@@ -48,27 +48,26 @@ public class Ejercicio5 {
         //APARTADO B
         System.out.println("---------------------APARTADO B--------------------------------------");
         long apartadoB = listaRegistro.stream()
-                                  .filter(apa -> (apa.getFecha().isAfter(LocalDate.of(2017, Month.OCTOBER, 10)) && apa.getFecha()
-                                                .isBefore(LocalDate.of(2017, Month.OCTOBER, 20))))
+                                  .filter(apa -> (apa.getFecha().isAfter(LocalDate.of(2017, Month.OCTOBER, 9)) && apa.getFecha()
+                                                .isBefore(LocalDate.of(2017, Month.OCTOBER, 21))))
                                   .map(apa -> apa.getEstacionMeteorologica())
                                   .distinct()
                                   .count();
         System.out.println("Estaciones leídas entre el 10/10/17 y el 20/10/17: " + apartadoB);
         
         //APARTADO C
-//        System.out.println("---------------------APARTADO C--------------------------------------");                                        
-//        DoubleStream mediaPrecipitaciones;
-//        List<Double> lista = listaRegistro.stream()
-//                               .filter(apa -> (apa.getFecha().isAfter(LocalDate.of(2017, Month.OCTOBER, 10)) && apa.getFecha()
-//                                                .isBefore(LocalDate.of(2017, Month.OCTOBER, 20))))
-//                               .map(apa -> apa.getPrecipitacion())
-//                               .collect(Collectors.toList());
-//        
-//        mediaPrecipitaciones = DoubleStream.of(listaRegistro.stream()
-//                               .filter(apa -> (apa.getFecha().isAfter(LocalDate.of(2017, Month.OCTOBER, 10)) && apa.getFecha()
-//                                                .isBefore(LocalDate.of(2017, Month.OCTOBER, 20))))
-//                               .map(apa -> apa.getPrecipitacion())
-//                               .collect(Collectors.toList());
+        System.out.println("---------------------APARTADO C--------------------------------------");                                        
+
+        Double mediaPrecipitaciones = listaRegistro.stream()
+                               .filter(apa -> (apa.getFecha().isAfter(LocalDate.of(2017, Month.OCTOBER, 9)) && apa.getFecha()
+                                                .isBefore(LocalDate.of(2017, Month.OCTOBER, 21))))
+                               .mapToDouble(Registro::getPrecipitacion)
+                               .average()
+                               .getAsDouble();
+        
+        System.out.println("La media de precipitaciones es de -> " + mediaPrecipitaciones);
+
+        
     }
 
     //Métodos.
