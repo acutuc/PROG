@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS clientes
 	telcli char(9),
 		constraint pk_clientes primary key (codcli)
 	);
-    
+ /*   
 -- PK: matricula
 -- FK: codcli
 CREATE TABLE IF NOT EXISTS vehiculos
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS vehiculos
 		constraint pk_vehiculos primary key (matricula),
         constraint fk_vehiculos_clientes foreign key (codcli)
 			references clientes (codcli)
-				on delete no action on update cascade
+				on delete cascade on update cascade
 	);
     
 -- PK : codmec
@@ -46,16 +46,16 @@ CREATE TABLE IF NOT EXISTS mecanicos
 		constraint pk_mecanicos primary key (codmec),
         constraint fk_vehiculos_mecanicos foreign key (matricula)
 			references vehiculos (matricula)
-				on delete no action on update cascade
+				on delete cascade on update cascade
 	);
-    
-    
+*/
 INSERT INTO clientes
 VALUES
 (1, 'Gabriel', 'Allende', 'Palacio', '666356987'),
 (2, 'Javier', 'Parodi', 'Piñero', '654895201'),
 (3, 'Juan', 'Tineo', 'Gómez', '659014598');
 
+/*
 INSERT INTO vehiculos
 VALUES
 ('9584JBT', 'Renault', '308', 4, false, 1),
@@ -67,3 +67,5 @@ VALUES
 (1, 'Pedro', 'Martínez', 'Gómez', '9584JBT'),
 (2, 'Jaime', 'Valero', 'Ruiz', '8452KMN'),
 (3, 'Rodrigo', 'Moyano', 'Vicario', '4750BRP');
+*/
+Select * from clientes

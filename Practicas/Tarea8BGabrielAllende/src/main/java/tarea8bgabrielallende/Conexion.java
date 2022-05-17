@@ -2,7 +2,7 @@
  * Esta clase aplica el patrón SINGLETON
  */
 
-package daw.carlos.modelo;
+package tarea8bgabrielallende;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,9 +15,9 @@ import java.sql.SQLException;
 
 public class Conexion {
 
-	private static final String SERVIDOR = "jdbc:mysql://192.168.56.101/"; //127.0.0.1
+	private static final String SERVIDOR = "jdbc:mysql://127.0.0.1/"; //127.0.0.1
     private static final String NOMBRE_BASE_DATOS = "prueba";
-    private static final String USER = "gabiallende"; //root
+    private static final String USER = "root"; //root
     private static final String PASS = "42293754";
 
     private static Connection instancia = null;
