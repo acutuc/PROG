@@ -10,28 +10,29 @@ USE bdProgramacion;
 Un Cliente alquila UN Vehiculo, un Vehiculo es reparado por VARIOS Mecánicos
 
 */
+
+-- PK: matricula
+CREATE TABLE IF NOT EXISTS vehiculos
+	(matricula char(8),
+    marca varchar(20),
+    modelo varchar(20),
+    puertas tinyint,
+    automatico boolean,
+		constraint pk_vehiculos primary key (matricula)
+	);
+    
 -- PK: codcli
+-- FK: matricula
 CREATE TABLE IF NOT EXISTS clientes
 	(codcli int not null,
 	nomcli varchar(50),
 	ape1cli varchar(50),
 	ape2cli varchar(50),
 	telcli char(9),
-		constraint pk_clientes primary key (codcli)
-	);
- /*   
--- PK: matricula
--- FK: codcli
-CREATE TABLE IF NOT EXISTS vehiculos
-	(matricula char(8) not null,
-    marca varchar(20),
-    modelo varchar(20),
-    puertas tinyint,
-    automatico boolean,
-    codcli int not null,
-		constraint pk_vehiculos primary key (matricula),
-        constraint fk_vehiculos_clientes foreign key (codcli)
-			references clientes (codcli)
+    matricula char(8),
+		constraint pk_clientes primary key (codcli),
+        constraint fk_clientes_vehiculos foreign key (matricula)
+			references vehiculos (matricula)
 				on delete cascade on update cascade
 	);
     
@@ -48,24 +49,23 @@ CREATE TABLE IF NOT EXISTS mecanicos
 			references vehiculos (matricula)
 				on delete cascade on update cascade
 	);
-*/
-INSERT INTO clientes
-VALUES
-(1, 'Gabriel', 'Allende', 'Palacio', '666356987'),
-(2, 'Javier', 'Parodi', 'Piñero', '654895201'),
-(3, 'Juan', 'Tineo', 'Gómez', '659014598');
-
-/*
+    
 INSERT INTO vehiculos
 VALUES
-('9584JBT', 'Renault', '308', 4, false, 1),
-('8452KMN', 'Seat', 'Ibiza', 5, true, 2),
-('4750BRP', 'Mazda', 'RX3', 2, true, 3);
+('9584JBT', 'Renault', '308', 4, false),
+('8452KMN', 'Seat', 'Ibiza', 5, true),
+('4750BRP', 'Mazda', 'RX3', 2, true);
+
+INSERT INTO clientes
+VALUES
+(1, 'Gabriel', 'Allende', 'Palacio', '666356987', '9584JBT'),
+(2, 'Javier', 'Parodi', 'Piñero', '654895201', '8452KMN'),
+(3, 'Juan', 'Tineo', 'Gómez', '659014598', '4750BRP');
 
 INSERT INTO mecanicos
 VALUES
 (1, 'Pedro', 'Martínez', 'Gómez', '9584JBT'),
 (2, 'Jaime', 'Valero', 'Ruiz', '8452KMN'),
 (3, 'Rodrigo', 'Moyano', 'Vicario', '4750BRP');
-*/
+
 Select * from clientes

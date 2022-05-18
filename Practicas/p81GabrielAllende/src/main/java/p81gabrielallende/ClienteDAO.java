@@ -20,7 +20,6 @@ public class ClienteDAO implements ICliente{
 	}
 
 
-	@Override
 	public List<ClienteVO> getAll() throws SQLException {
 		List<ClienteVO> lista = new ArrayList<>();
 		

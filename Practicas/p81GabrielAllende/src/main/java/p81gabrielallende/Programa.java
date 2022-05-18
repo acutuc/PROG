@@ -32,7 +32,7 @@ public class Programa {
             System.out.println("Cliente con primary key 1: ");
             System.out.println(daoCliente.findByPk(1));
             System.out.println("-----------------------------------------");
-            System.out.println("Nº clientes borrados" + 
+            System.out.println("Nº clientes borrados " + 
                     daoCliente.deleteCliente(new ClienteVO(3,"Juan", "Tineo", "Gómez", "659014598")));
             //El método de arriba, borra el cliente y devuelve un int con la cantidad de clientes eliminados.
             System.out.println("-----------------------------------------");
