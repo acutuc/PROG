@@ -10,31 +10,31 @@ import java.util.List;
 import java.sql.Statement;
 
 //Definición de la clase. Implementa el Interface ICliente
-public class ClienteDAO implements ICliente{
+public class VehiculoDAO implements IVehiculo{
 	//Atributo privado de tipo Connection
 	private Connection con = null;
 	
 	//Constructor
-	public ClienteDAO() {
+	public VehiculoDAO() {
 		con = Conexion.getInstance();
 	}
 
-
-	public List<ClienteVO> getAll() throws SQLException {
-		List<ClienteVO> lista = new ArrayList<>();
+	@Override
+	public List<VehiculoVO> getAll() throws SQLException {
+		List<VehiculoVO> lista = new ArrayList<>();
 		
 		try (Statement st = con.createStatement()){
 			
-			ResultSet res = st.executeQuery("SELECT * FROM clientes");
+			ResultSet res = st.executeQuery("SELECT * FROM vehiculos");
 			
 			while (res.next()) {
-				ClienteVO c = new ClienteVO();
+				VehiculoVO c = new VehiculoVO();
 				
-				c.setPk(res.getInt("codcli"));
-				c.setNombre(res.getString("nomcli"));
-				c.setApellido1(res.getString("ape1cli"));
-				c.setApellido2(res.getString("ape2cli"));
-				c.setTelefono(res.getString("telcli"));
+				c.setPk(res.getString("matricula"));
+				c.setMarca(res.getString("marca"));
+				c.setModelo(res.getString("modelo"));
+				c.setPuertas(res.getInt("puertas"));
+				c.setAuto(res.getBoolean("automatico"));
 				
 				//Añado el objeto a la lista
 				lista.add(c);
@@ -44,39 +44,39 @@ public class ClienteDAO implements ICliente{
 	}
 
 	@Override
-	public ClienteVO findByPk(int pk) throws SQLException {
+	public VehiculoVO findByPk(String pk) throws SQLException {
 		ResultSet res = null;
-		ClienteVO cliente = new ClienteVO();
+		VehiculoVO vehiculo= new VehiculoVO();
 		
-		String sql = "SELECT * FROM clientes WHERE codcli = ?";
+		String sql = "SELECT * FROM vehiculos WHERE matricula = ?";
 		
 		try (PreparedStatement prest = con.prepareStatement(sql)){
 			
-			prest.setInt(1, pk);
+			prest.setString(1, pk);
 			
 			res = prest.executeQuery();
 			
 			if(res.next()) {
 				//Recojo los datos del Cliente y los guardo en un objeto
-				cliente.setPk(res.getInt("codcli"));
-				cliente.setNombre(res.getString("nomcli"));
-				cliente.setApellido1(res.getString("ape1cli"));
-				cliente.setApellido2(res.getString("ape2cli"));
-				cliente.setTelefono(res.getString("telcli"));
+				vehiculo.setPk(res.getString("matricula"));
+				vehiculo.setMarca(res.getString("marca"));
+				vehiculo.setModelo(res.getString("modelo"));
+				vehiculo.setPuertas(res.getInt("puertas"));
+				vehiculo.setAuto(res.getBoolean("automatico"));
 				
-				return cliente;
+				return vehiculo;
 			}
 			return null;
 		}
 	}
 
 	@Override
-	public int insertCliente(ClienteVO cliente) throws SQLException {
+	public int insertVehiculo(VehiculoVO vehiculo) throws SQLException {
 		int numFilas = 0;
 		
-        String sql = "INSERT INTO clientes VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO vehiculos VALUES (?, ?, ?, ?, ?)";
 
-        if (findByPk(cliente.getPk()) != null) {
+        if (findByPk(vehiculo.getPk()) != null) {
             // Existe un registro con esa pk
             // No se hace la inserción
             return numFilas;
@@ -86,11 +86,11 @@ public class ClienteDAO implements ICliente{
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setInt(1, cliente.getPk());
-                prest.setString(2, cliente.getNombre());
-                prest.setString(3, cliente.getApellido1());
-                prest.setString(4, cliente.getApellido2());
-                prest.setString(5, cliente.getTelefono());
+                prest.setString(1, vehiculo.getPk());
+                prest.setString(2, vehiculo.getMarca());
+                prest.setString(3, vehiculo.getModelo());
+                prest.setInt(4, vehiculo.getPuertas());
+                prest.setBoolean(5, vehiculo.isAuto());
 
                 numFilas = prest.executeUpdate();
             }
@@ -99,11 +99,11 @@ public class ClienteDAO implements ICliente{
 	}
 
 	@Override
-	public int insertCliente(List<ClienteVO> lista) throws SQLException {
+	public int insertVehiculo(List<VehiculoVO> lista) throws SQLException {
 		 int numFilas = 0;
 
-	        for (ClienteVO tmp : lista) {
-	            numFilas += insertCliente(tmp);
+	        for (VehiculoVO tmp : lista) {
+	            numFilas += insertVehiculo(tmp);
 	        }
 
 	        return numFilas;
@@ -111,17 +111,17 @@ public class ClienteDAO implements ICliente{
 
 	@Override
 	//Método delete PARAMETRIZADO.
-	public int deleteCliente(ClienteVO cliente) throws SQLException {
+	public int deleteVehiculo(VehiculoVO vehiculo) throws SQLException {
 
 		int numFilas = 0;
 
-        String sql = "DELETE FROM clientes WHERE codcli = ?";
+        String sql = "DELETE FROM vehiculos WHERE matricula = ?";
 
         // Sentencia parametrizada
         try (PreparedStatement prest = con.prepareStatement(sql)) {
 
             // Establecemos los parámetros de la sentencia
-            prest.setInt(1, cliente.getPk());
+            prest.setString(1, vehiculo.getPk());
             // Ejecutamos la sentencia
             numFilas = prest.executeUpdate();
         }
@@ -129,8 +129,8 @@ public class ClienteDAO implements ICliente{
 	}
 
 	@Override
-	public int deleteCliente() throws SQLException {
-		String sql = "DELETE FROM clientes";
+	public int deleteVehiculo() throws SQLException {
+		String sql = "DELETE FROM vehiculos";
 
         int nfilas = 0;
 
@@ -146,9 +146,9 @@ public class ClienteDAO implements ICliente{
 	}
 
 	@Override
-	public int updateCliente(int pk, ClienteVO nuevosDatos) throws SQLException {
+	public int updateVehiculo(String pk, VehiculoVO nuevosDatos) throws SQLException {
 		int numFilas = 0;
-        String sql = "UPDATE clientes SET nomcli = ?, ape1cli = ?, ape2cli = ?, telcli = ? WHERE codcli = ?";
+        String sql = "UPDATE vehiculos SET marca = ?, modelo = ?, puertas = ?, automatico = ? WHERE matricula = ?";
 
         if (findByPk(pk) == null) {
             // El Cliente a actualizar no existe
@@ -159,16 +159,18 @@ public class ClienteDAO implements ICliente{
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(1, nuevosDatos.getNombre());
-                prest.setString(2, nuevosDatos.getApellido1());
-                prest.setString(3, nuevosDatos.getApellido2());
-                prest.setString(4, nuevosDatos.getTelefono());
-                prest.setInt(5, pk);
+                prest.setString(1, nuevosDatos.getMarca());
+                prest.setString(2, nuevosDatos.getModelo());
+                prest.setInt(3, nuevosDatos.getPuertas());
+                prest.setBoolean(4, nuevosDatos.isAuto());
+                prest.setString(5, pk);
 
                 numFilas = prest.executeUpdate();
             }
             return numFilas;
         }
 	}
-
 }
+
+
+	
