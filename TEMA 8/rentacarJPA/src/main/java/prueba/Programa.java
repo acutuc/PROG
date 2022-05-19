@@ -54,8 +54,8 @@ public class Programa {
 		System.out.println("\n\nTodas las entidades después de modificar una ------------ ");
 		listaVehiculos.forEach(System.out::println);
 
-		// Borrado del vehículo de matrícula 1235ACB
-		Vehiculo vehicBorrar = findByMatricula("1235ACB");
+		// Borrado del vehículo de matrícula 1234AAA
+		Vehiculo vehicBorrar = findByMatricula("1234AAA");
 		deleteVehiculo(vehicBorrar);
 
 		// Se obtienen todas las instancias
