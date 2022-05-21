@@ -15,9 +15,9 @@ public class Programa {
 		List<VehiculoVO> listaVehiculo = new ArrayList<>();
 		
 		//Añadimos tres VehiculoVO a la lista, con los que haremos las distintas operaciones CRUD.
-		listaVehiculo.add(new VehiculoVO("4758KLM", "Renault", "Clio", 5, false));
-		listaVehiculo.add(new VehiculoVO("8935BDK", "Ford", "Focus", 5, false));
-		listaVehiculo.add(new VehiculoVO("5420LNJ", "Ferrari", "LaFerrari", 2, true));
+		listaVehiculo.add(new VehiculoVO(1, "4758KLM", "Renault", "Clio", 5, false));
+		listaVehiculo.add(new VehiculoVO(2, "8935BDK", "Ford", "Focus", 5, false));
+		listaVehiculo.add(new VehiculoVO(3, "5420LNJ", "Ferrari", "LaFerrari", 2, true));
 		
 		try {
 			
@@ -29,22 +29,22 @@ public class Programa {
             System.out.println("-------- Lista con datos recogidos desde la B.D -------------");
             nuevaLista.forEach(System.out::println);
             System.out.println("-----------------------------------------");
-            System.out.println("Vehiculo con primary key 4758KLM: ");
-            System.out.println(daoVehiculo.findByPk("4758KLM"));
+            System.out.println("Vehiculo con primary key 3: ");
+            System.out.println(daoVehiculo.findByPk(3));
             System.out.println("-----------------------------------------");
-            System.out.println("Se va a borrar el vehiculo con la pk 5420LNJ");
+            System.out.println("Se va a borrar el vehiculo con la pk 3");
             System.out.println("Nº vehiculos borrados " + 
-            		daoVehiculo.deleteVehiculo(new VehiculoVO("5420LNJ", "Ferrari", "LaFerrari", 2, true)));
+            		daoVehiculo.deleteVehiculo(new VehiculoVO(3, "5420LNJ", "Ferrari", "LaFerrari", 2, true)));
             //El método de arriba, borra el vehiculo y devuelve un int con la cantidad de vehiculos eliminados.
             System.out.println("-----------------------------------------");
             nuevaLista = daoVehiculo.getAll();
             System.out.println("-------- Lista con datos recogidos desde la B.D despues de borrar un vehiculo-------------");
             nuevaLista.forEach(System.out::println);
             System.out.println("-----------------------------------------");
-            System.out.println("Modificación del vehiculo con pk 8935BDK");
+            System.out.println("Modificación del vehiculo con pk 2");
             //Modificamos al vehiculo TODOS sus atributos. Lo que pasemos por parámetro serán sus nuevos valores.
             System.out.println("Nº vehiculos modificados " + 
-            		daoVehiculo.updateVehiculo("8935BDK", new VehiculoVO("4830LMN", "Seat", "Altea", 5, true)));
+            		daoVehiculo.updateVehiculo(2, new VehiculoVO(2, "4830LMN", "Seat", "Altea", 5, true)));
             System.out.println("-----------------------------------------");
             nuevaLista = daoVehiculo.getAll();
             System.out.println("-------- Lista con datos recogidos desde la B.D despues de modificar un vehiculo -------------");

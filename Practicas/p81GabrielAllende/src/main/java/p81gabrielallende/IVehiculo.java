@@ -11,7 +11,7 @@ public interface IVehiculo {
     List<VehiculoVO> getAll() throws SQLException;
     
     // Méodo para obtener un registro a partir de la PK
-    VehiculoVO findByPk(String pk) throws SQLException;
+    VehiculoVO findByPk(int pk) throws SQLException;
     
     // Método para insertar un registro
     int insertVehiculo (VehiculoVO vehiculo) throws SQLException;
@@ -27,5 +27,5 @@ public interface IVehiculo {
     
     // Método para modificar un Vehiculo. Se modifica al Vehiculo que tenga esa 'pk'
     // con los nuevos datos que traiga el Vehiculo --> 'nuevosDatos'
-    int updateVehiculo (String pk, VehiculoVO nuevosDatos) throws SQLException;
+    int updateVehiculo (int pk, VehiculoVO nuevosDatos) throws SQLException;
 }

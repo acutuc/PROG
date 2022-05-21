@@ -3,15 +3,17 @@ package p81gabrielallende;
 //Definición de la clase
 public class VehiculoVO {
 	//Atributos de la clase     En MySQL:
-	private String pk; 			//matricula
+	private int pk;				//codvehi
+	private String matricula;	//matricula
 	private String marca; 		//marca
 	private String modelo;	 	//modelo
 	private int puertas; 		//puertas
 	private boolean auto; 		//automatico
 	
 	//Constructor parametrizado.
-	VehiculoVO(String pk, String marca, String modelo, int puertas, boolean auto){
+	VehiculoVO(int pk, String matricula, String marca, String modelo, int puertas, boolean auto){
 		this.pk = pk;
+		this.matricula = matricula;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.puertas = puertas;
@@ -23,12 +25,20 @@ public class VehiculoVO {
 	}
 
 	//Getters y setters.
-	public String getPk() {
+	public int getPk() {
 		return pk;
 	}
 
-	public void setPk(String pk) {
+	public void setPk(int pk) {
 		this.pk = pk;
+	}
+	
+	public String getMatricula() {
+		return matricula;
+	}
+	
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 
 	public String getMarca() {
@@ -63,12 +73,12 @@ public class VehiculoVO {
 		this.auto = auto;
 	}
 
+	
 	//toString()
 	@Override
 	public String toString() {
-		return "VehiculoVO [pk=" + pk + ", marca=" + marca + ", modelo=" + modelo + ", puertas=" + puertas + ", auto="
-				+ auto + "]";
+		return "VehiculoVO [pk=" + pk + ", matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo
+				+ ", puertas=" + puertas + ", auto=" + auto + "]";
 	}
-	
 	
 }

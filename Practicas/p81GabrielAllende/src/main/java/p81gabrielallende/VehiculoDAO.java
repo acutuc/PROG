@@ -30,7 +30,8 @@ public class VehiculoDAO implements IVehiculo{
 			while (res.next()) {
 				VehiculoVO c = new VehiculoVO();
 				
-				c.setPk(res.getString("matricula"));
+				c.setPk(res.getInt("codvehi"));
+				c.setMatricula(res.getString("matricula"));
 				c.setMarca(res.getString("marca"));
 				c.setModelo(res.getString("modelo"));
 				c.setPuertas(res.getInt("puertas"));
@@ -44,21 +45,22 @@ public class VehiculoDAO implements IVehiculo{
 	}
 
 	@Override
-	public VehiculoVO findByPk(String pk) throws SQLException {
+	public VehiculoVO findByPk(int pk) throws SQLException {
 		ResultSet res = null;
 		VehiculoVO vehiculo= new VehiculoVO();
 		
-		String sql = "SELECT * FROM vehiculos WHERE matricula = ?";
+		String sql = "SELECT * FROM vehiculos WHERE codvehi = ?";
 		
 		try (PreparedStatement prest = con.prepareStatement(sql)){
 			
-			prest.setString(1, pk);
+			prest.setInt(1, pk);
 			
 			res = prest.executeQuery();
 			
 			if(res.next()) {
 				//Recojo los datos del Cliente y los guardo en un objeto
-				vehiculo.setPk(res.getString("matricula"));
+				vehiculo.setPk(res.getInt("codvehi"));
+				vehiculo.setMatricula(res.getString("matricula"));
 				vehiculo.setMarca(res.getString("marca"));
 				vehiculo.setModelo(res.getString("modelo"));
 				vehiculo.setPuertas(res.getInt("puertas"));
@@ -74,7 +76,7 @@ public class VehiculoDAO implements IVehiculo{
 	public int insertVehiculo(VehiculoVO vehiculo) throws SQLException {
 		int numFilas = 0;
 		
-        String sql = "INSERT INTO vehiculos VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO vehiculos VALUES (?, ?, ?, ?, ?, ?)";
 
         if (findByPk(vehiculo.getPk()) != null) {
             // Existe un registro con esa pk
@@ -86,11 +88,12 @@ public class VehiculoDAO implements IVehiculo{
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(1, vehiculo.getPk());
-                prest.setString(2, vehiculo.getMarca());
-                prest.setString(3, vehiculo.getModelo());
-                prest.setInt(4, vehiculo.getPuertas());
-                prest.setBoolean(5, vehiculo.isAuto());
+            	prest.setInt(1, vehiculo.getPk());
+                prest.setString(2, vehiculo.getMatricula());
+                prest.setString(3, vehiculo.getMarca());
+                prest.setString(4, vehiculo.getModelo());
+                prest.setInt(5, vehiculo.getPuertas());
+                prest.setBoolean(6, vehiculo.isAuto());
 
                 numFilas = prest.executeUpdate();
             }
@@ -115,13 +118,13 @@ public class VehiculoDAO implements IVehiculo{
 
 		int numFilas = 0;
 
-        String sql = "DELETE FROM vehiculos WHERE matricula = ?";
+        String sql = "DELETE FROM vehiculos WHERE codvehi = ?";
 
         // Sentencia parametrizada
         try (PreparedStatement prest = con.prepareStatement(sql)) {
 
             // Establecemos los parámetros de la sentencia
-            prest.setString(1, vehiculo.getPk());
+            prest.setInt(1, vehiculo.getPk());
             // Ejecutamos la sentencia
             numFilas = prest.executeUpdate();
         }
@@ -146,9 +149,9 @@ public class VehiculoDAO implements IVehiculo{
 	}
 
 	@Override
-	public int updateVehiculo(String pk, VehiculoVO nuevosDatos) throws SQLException {
+	public int updateVehiculo(int pk, VehiculoVO nuevosDatos) throws SQLException {
 		int numFilas = 0;
-        String sql = "UPDATE vehiculos SET marca = ?, modelo = ?, puertas = ?, automatico = ? WHERE matricula = ?";
+        String sql = "UPDATE vehiculos SET matricula = ?, marca = ?, modelo = ?, puertas = ?, automatico = ? WHERE codvehi = ?";
 
         if (findByPk(pk) == null) {
             // El Cliente a actualizar no existe
@@ -159,11 +162,12 @@ public class VehiculoDAO implements IVehiculo{
             try (PreparedStatement prest = con.prepareStatement(sql)) {
 
                 // Establecemos los parámetros de la sentencia
-                prest.setString(1, nuevosDatos.getMarca());
-                prest.setString(2, nuevosDatos.getModelo());
-                prest.setInt(3, nuevosDatos.getPuertas());
-                prest.setBoolean(4, nuevosDatos.isAuto());
-                prest.setString(5, pk);
+            	prest.setString(1, nuevosDatos.getMatricula());
+                prest.setString(2, nuevosDatos.getMarca());
+                prest.setString(3, nuevosDatos.getModelo());
+                prest.setInt(4, nuevosDatos.getPuertas());
+                prest.setBoolean(5, nuevosDatos.isAuto());
+                prest.setInt(6, pk);
 
                 numFilas = prest.executeUpdate();
             }
