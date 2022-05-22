@@ -13,7 +13,8 @@ public class PruebaControladorMecanico {
 				
 				//Creamos un mecanico
 				Mecanico m1 = new Mecanico();
-				//Al ser auto_increment, no es necesario que asignemos PK al mecánico.
+				//Al ser auto_increment, no es necesario que asignemos PK al mecánico, Gracias a la 
+				//anotación @GeneratedValue en la clase Mecanico.
 				m1.setNommec("Desguazador");
 				m1.setApe1mec("Voraz");
 				m1.setApe2mec("Furioso");

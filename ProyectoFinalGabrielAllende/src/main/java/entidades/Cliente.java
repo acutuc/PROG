@@ -107,5 +107,7 @@ public class Cliente implements Serializable {
 		}
 		return builder.toString();
 	}
+	
+	
 
 }

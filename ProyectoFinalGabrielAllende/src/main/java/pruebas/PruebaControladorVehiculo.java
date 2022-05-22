@@ -13,7 +13,8 @@ public class PruebaControladorVehiculo {
 		
 		//Creamos un mecanico
 		Vehiculo v1 = new Vehiculo();
-		//Al ser auto_increment, no es necesario que asignemos PK al vehículo.
+		//Al ser auto_increment, no es necesario que asignemos PK al vehículo, gracias a 
+		//la anotación @GeneratedValue en la clase Vehiculo.
 		v1.setAutomatico(true);
 		v1.setMarca("Lamborghini");
 		v1.setMatricula("5192MJP");

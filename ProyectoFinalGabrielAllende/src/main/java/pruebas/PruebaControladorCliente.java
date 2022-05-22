@@ -11,7 +11,9 @@ public class PruebaControladorCliente {
 		//Imprimimos los datos actuales de la entidad Cliente de nuestra BBDD.
 		imprimirEntidades(controladorC);
 		
-		//Creamos un cliente, asignamos todos sus campos MENOS un vehículo (no lo tiene alquilado).
+		/*Creamos un cliente, asignamos todos sus campos MENOS un vehículo (no lo tiene alquilado).
+		Tampoco introducimos su ID, pues está configurado como auto_increment (la anotación en la clase Cliente
+		@GeneratedValue controla ésto).*/
 		Cliente c1 = new Cliente();
 		c1.setNomcli("Ana");
 		c1.setApe1cli("Lisamel");
