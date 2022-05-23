@@ -32,7 +32,7 @@ public class Vehiculo implements Serializable {
 	//A partir del codcli, podemos obtener a qué cliente pertenece este Vehículo, 
 	//aunque en la BD no lo podamos obtener directamente.
 	//bi-directional one-to-one association to Cliente
-	@OneToOne(mappedBy="vehiculo", fetch=FetchType.LAZY)
+	@OneToOne(mappedBy="vehiculo", fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Cliente cliente;
 
 	//bi-directional many-to-one association to Mecanico
@@ -140,9 +140,12 @@ public class Vehiculo implements Serializable {
 		builder.append("\nPuertas: ");
 		builder.append(puertas);
 		builder.append("\nCliente: ");
-		builder.append(codcli);
-		builder.append("\nMecánicos: ");
-		builder.append(mecanicos + "\n]\n");
+		if(codcli.equals("")) {
+			builder.append("A éste vehículo aún no lo ha alquilado ningún cliente");
+		}
+		builder.append(codcli + "\n]");
+		/*builder.append("\nMecánicos: ");
+		builder.append(mecanicos + "\n]\n");*/
 		return builder.toString();
 	}
 	

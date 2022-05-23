@@ -25,7 +25,7 @@ public class Mecanico implements Serializable {
 
 	// bi-directional many-to-one association to Vehiculo
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "codvehi", referencedColumnName = "codvehi")
+	@JoinColumn(name = "codvehi", referencedColumnName = "codvehi", insertable = false, updatable = false)
 	private Vehiculo vehiculo;
 
 	// Constructor con sus atributos por defecto.

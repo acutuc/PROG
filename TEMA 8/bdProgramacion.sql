@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS mecanico
 				on delete cascade on update cascade
 	);
     
-    -- set FOREIGN_KEY_CHECKS=0;
+     -- set FOREIGN_KEY_CHECKS=0;
     
 INSERT INTO vehiculo
 VALUES

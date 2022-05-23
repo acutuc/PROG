@@ -54,12 +54,12 @@ public class AppFinal {
 					opcionesInt = JOptionPane.showOptionDialog(null, "¿Qué datos desea consultar?", "Elegir", 0, 1,
 							null, arrayDatos, null);
 					switch (opcionesInt) {
-					// Consultar datos de CLIENTES
+					// Consultar datos de CLIENTES.
 					case 0:
 						System.out.println("---------CONSULTA DE CLIENTES----------");
 						System.out.println(controladorC.findAll());
 						break;
-					// Consultar datos de VEHICULOS
+					// Consultar datos de VEHICULOS.
 					case 1:
 						System.out.println("---------CONSULTA DE VEHICULOS----------");
 						System.out.println(controladorV.findAll());
@@ -74,15 +74,16 @@ public class AppFinal {
 						aux = false;
 						break;
 					}
-				} while (aux);
+				} while (aux); //salimos del bucle cuando aux sea false.
+				
 				// Pasamos la variable auxiliar a true para seguir en bucle hasta pulsar SALIR.
 				aux = true;
 				break;
+				
 			// Case ELIMINAR DATOS
 			case 1:
 				// Menú de datos.
-				opcionesInt = JOptionPane.showOptionDialog(null, "¿Qué datos desea eliminar?", "Elegir", 0, 1, null,
-						arrayDatos, null);
+				opcionesInt = JOptionPane.showOptionDialog(null, "¿Qué datos desea eliminar?", "Elegir", 0, 1, null, arrayDatos, null);
 				switch (opcionesInt) {
 				// Borrado de CLIENTES.
 				case 0:
@@ -138,7 +139,9 @@ public class AppFinal {
 					aux = false;
 					break;
 				}
+				aux = true;
 				break;
+				
 			// Case CREAR DATOS.
 			case 2:
 				// Menú de datos.
@@ -231,14 +234,15 @@ public class AppFinal {
 					mecaux.setApe1mec(apellido1Mecanico);
 					mecaux.setApe2mec(apellido2Mecanico);
 
-					Vehiculo vehiculoAlquilado1;
-					preguntaVehiculo = JOptionPane.showConfirmDialog(null, "¿Está éste mecánico reparando algún vehículo?");
+					Vehiculo vehiculoReparado;
+					preguntaVehiculo = JOptionPane.showConfirmDialog(null,
+							"¿Está éste mecánico reparando algún vehículo?");
 					if (preguntaVehiculo == 0) {
-						vehiculoAlquilado1 = (Vehiculo) JOptionPane.showInputDialog(null,
-								"Elija el vehículo que esté reparando el mecánico: ", "Elegir", JOptionPane.QUESTION_MESSAGE, null,
-								arrayVehiculos, null);
+						vehiculoReparado = (Vehiculo) JOptionPane.showInputDialog(null,
+								"Elija el vehículo que esté reparando el mecánico: ", "Elegir",
+								JOptionPane.QUESTION_MESSAGE, null, arrayVehiculos, null);
 
-						mecaux.setVehiculo(vehiculoAlquilado1);
+						mecaux.setVehiculo(vehiculoReparado);
 					}
 
 					// Creamos el mecánico.
@@ -250,10 +254,140 @@ public class AppFinal {
 					aux = false;
 					break;
 				}
+				aux = true;
 				break;
+				
 			// Case ACTUALIZAR DATOS.
 			case 3:
+				// Menú de datos.
+				opcionesInt = JOptionPane.showOptionDialog(null, "¿Qué datos desea modificar?", "Elegir", 0, 1, null,
+						arrayDatos, null);
+				switch (opcionesInt) {
+				// Actualización de datos de CLIENTES.
+				case 0:
+					// Éste JOptionPane tiene el método .toString implementado, para evitar el
+					// ClassCastException.
+					opcion = JOptionPane.showInputDialog(null, "Elija un cliente a modificar: ", "Elegir",
+							JOptionPane.QUESTION_MESSAGE, null, arrayClientes, null).toString(); // <---ATENCIÓN.
+					// Bucle que recorre la listaCliente, inicializada con el controladorC.
+					for (Cliente c : listaClientes) {
+						// Condición a cumplir para el borrado:
+						// Que el ID de la opción elegida, mediante substring, sea igual al
+						// valor en String del código de cliente.
+						if (opcion.substring(14, 17).equals(String.valueOf(c.getCodcli()))) {
+							String nombreCliente;
+							String apellido1Cliente;
+							String apellido2Cliente;
+							String telefonoCliente;
+							Vehiculo vehiculoAlquilado;
 
+							nombreCliente = JOptionPane.showInputDialog("Introduzca el nombre");
+							apellido1Cliente = JOptionPane.showInputDialog("Introduzca el primer apellido");
+							apellido2Cliente = JOptionPane.showInputDialog("Introduzca el segundo apellido");
+							telefonoCliente = JOptionPane.showInputDialog("Introduzca el teléfono de contacto");
+
+							c.setNomcli(nombreCliente);
+							c.setApe1cli(apellido1Cliente);
+							c.setApe2cli(apellido2Cliente);
+							c.setTelcli(telefonoCliente);
+
+							int preguntaVehiculo = JOptionPane.showConfirmDialog(null, "¿Tiene éste cliente algún vehículo alquilado?");
+							if (preguntaVehiculo == 0) {
+								vehiculoAlquilado = (Vehiculo) JOptionPane.showInputDialog(null,
+										"Elija un vehículo para el cliente: ", "Elegir", JOptionPane.QUESTION_MESSAGE,
+										null, arrayVehiculos, null);
+
+								c.setVehiculo(vehiculoAlquilado);
+							}
+							controladorC.modificarCliente(c);
+						}
+					}
+					System.out.println("--------------DATOS TRAS MODIFICAR EL REGISTRO------------------");
+					System.out.println(controladorC.findAll());
+					break;
+				// Actualización de datos de VEHICULOS
+				case 1:
+					opcion = JOptionPane.showInputDialog(null, "Elija un vehículo a modificar: ", "Elegir",
+							JOptionPane.QUESTION_MESSAGE, null, arrayVehiculos, null).toString(); // <---ATENCIÓN.
+					// Bucle que recorre la listaMecanicos, inicializada con el controladorC.
+					for (Vehiculo v : listaVehiculos) {
+						// Condición a cumplir para el borrado:
+						// Que el ID de la opción elegida, mediante substring, sea igual al
+						// valor en String del código de vehículo.
+						if (opcion.substring(15, 16).equals(String.valueOf(v.getCodvehi()))) {
+							int intTransmision;
+							String marca;
+							String modelo;
+							String matricula;
+							int puertas;
+
+							// Asignamos valor a las variables.
+							marca = JOptionPane.showInputDialog("Introduzca la marca");
+							modelo = JOptionPane.showInputDialog("Introduzca el modelo");
+							matricula = JOptionPane.showInputDialog("Introduzca la matricula");
+							puertas = Integer.parseInt(JOptionPane.showInputDialog("Introduzca cantidad de puertas"));
+							intTransmision = JOptionPane.showConfirmDialog(null, "¿Es automático éste vehículo?");
+							v.setMarca(marca);
+							v.setModelo(modelo);
+							v.setMatricula(matricula);
+							v.setPuertas(puertas);
+							if (intTransmision == 0) {
+								v.setAutomatico(true);
+							} else {
+								v.setAutomatico(false);
+							}
+							controladorV.modificarVehiculo(v);
+						}
+					}
+					System.out.println("--------------DATOS TRAS MODIFICAR EL REGISTRO------------------");
+					System.out.println(controladorV.findAll());
+					break;
+				// Actualización de dats de MECANICOS.
+				case 2:
+					opcion = JOptionPane.showInputDialog(null, "Elija un mecánico a modificar: ", "Elegir",
+							JOptionPane.QUESTION_MESSAGE, null, arrayMecanicos, null).toString(); // <---ATENCIÓN.
+					// Bucle que recorre la listaClientes, inicializada con el controladorM.
+					for (Mecanico m : listaMecanicos) {
+						// Condición a cumplir para el borrado:
+						// Que el ID de la opción elegida, mediante substring, sea igual al
+						// valor en String del código de cliente.
+						if (opcion.substring(15, 19).equals(String.valueOf(m.getCodmec()))) {
+							// Declaramos variables para la inserción de datos.
+							String nombre;
+							String apellido1Mecanico;
+							String apellido2Mecanico;
+							Vehiculo vehiculoReparado;
+
+							// Asignamos valor a las variables.
+							nombre = JOptionPane.showInputDialog("Introduzca el nombre");
+							apellido1Mecanico = JOptionPane.showInputDialog("Introduzca el primer apellido");
+							apellido2Mecanico = JOptionPane.showInputDialog("Introduzca el segundo apellido");
+
+							m.setNommec(nombre);
+							m.setApe1mec(apellido1Mecanico);
+							m.setApe2mec(apellido2Mecanico);
+
+							int preguntaVehiculo = JOptionPane.showConfirmDialog(null,
+									"¿Está éste mecánico reparando algún vehículo?");
+							if (preguntaVehiculo == 0) {
+								vehiculoReparado = (Vehiculo) JOptionPane.showInputDialog(null,
+										"Elija el vehículo que esté reparando el mecánico: ", "Elegir",
+										JOptionPane.QUESTION_MESSAGE, null, arrayVehiculos, null);
+
+								m.setVehiculo(vehiculoReparado);
+							}
+
+							controladorM.modificarMecanico(m);
+						}
+					}
+					System.out.println("--------------DATOS TRAS MODIFICAR EL REGISTRO------------------");
+					System.out.println(controladorM.findAll());
+					break;
+				default:
+					aux = false;
+					break;
+				}
+				aux = true;
 				break;
 
 			// Default, salir del programa.

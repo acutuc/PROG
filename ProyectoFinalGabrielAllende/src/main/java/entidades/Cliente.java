@@ -27,7 +27,7 @@ public class Cliente implements Serializable {
 
 	// bi-directional one-to-one association to Vehiculo
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "codvehi", referencedColumnName = "codvehi", insertable = false, updatable = true)
+	@JoinColumn(name = "codvehi", referencedColumnName = "codvehi", insertable = false, updatable = false)
 	private Vehiculo vehiculo;
 
 	// Constructor con sus atributos por defecto.
