@@ -2,7 +2,6 @@ package appfinal;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -20,8 +19,6 @@ public class AppFinal {
 		ControladorCliente controladorC = new ControladorCliente();
 		ControladorVehiculo controladorV = new ControladorVehiculo();
 		ControladorMecanico controladorM = new ControladorMecanico();
-
-		Scanner entrada = new Scanner(System.in);
 
 		System.out.println("Modo Admin. ¿Qué desea hacer?");
 
@@ -42,7 +39,7 @@ public class AppFinal {
 			List<Vehiculo> listaVehiculos = controladorV.findAll();
 			List<Mecanico> listaMecanicos = controladorM.findAll();
 
-			// Paso a array las listas de objetos, haciendo casting explícito a Object.
+			// Paso a array de Object las listas inicializadas con los controladores.
 			Object[] arrayClientes = Arrays.copyOf(listaClientes.toArray(), listaClientes.size(), Object[].class);
 			Object[] arrayVehiculos = Arrays.copyOf(listaVehiculos.toArray(), listaVehiculos.size(), Object[].class);
 			Object[] arrayMecanicos = Arrays.copyOf(listaMecanicos.toArray(), listaMecanicos.size(), Object[].class);
@@ -87,7 +84,7 @@ public class AppFinal {
 				opcionesInt = JOptionPane.showOptionDialog(null, "¿Qué datos desea eliminar?", "Elegir", 0, 1, null,
 						arrayDatos, null);
 				switch (opcionesInt) {
-				//Borrado de CLIENTES.
+				// Borrado de CLIENTES.
 				case 0:
 					// Éste JOptionPane tiene el método .toString implementado, para evitar el
 					// ClassCastException.
@@ -105,7 +102,7 @@ public class AppFinal {
 					System.out.println("--------------DATOS TRAS ELIMINAR EL REGISTRO------------------");
 					System.out.println(controladorC.findAll());
 					break;
-					//Borrado de VEHICULOS
+				// Borrado de VEHICULOS
 				case 1:
 					opcion = JOptionPane.showInputDialog(null, "Elija un vehículo a borrar: ", "Elegir",
 							JOptionPane.QUESTION_MESSAGE, null, arrayVehiculos, null).toString(); // <---ATENCIÓN.
@@ -121,7 +118,7 @@ public class AppFinal {
 					System.out.println("--------------DATOS TRAS ELIMINAR EL REGISTRO------------------");
 					System.out.println(controladorV.findAll());
 					break;
-					//Borrado de MECANICOS.
+				// Borrado de MECANICOS.
 				case 2:
 					opcion = JOptionPane.showInputDialog(null, "Elija un mecánico a borrar: ", "Elegir",
 							JOptionPane.QUESTION_MESSAGE, null, arrayMecanicos, null).toString(); // <---ATENCIÓN.
@@ -141,121 +138,125 @@ public class AppFinal {
 					aux = false;
 					break;
 				}
-				//Case CREAR DATOS.
+				break;
+			// Case CREAR DATOS.
 			case 2:
 				// Menú de datos.
 				opcionesInt = JOptionPane.showOptionDialog(null, "¿Qué datos desea crear?", "Elegir", 0, 1, null,
 						arrayDatos, null);
 				switch (opcionesInt) {
-				//Creación de CLIENTES.
+				// Creación de CLIENTES.
 				case 0:
-					//Declaramos variables para la inserción de datos.
+					// Declaramos variables para la inserción de datos.
 					String nombreCliente;
 					String apellido1Cliente;
 					String apellido2Cliente;
 					String telefonoCliente;
 					Vehiculo vehiculoAlquilado;
-					//Cliente auxiliar en el que almacenaremos los datos.
+					// Cliente auxiliar en el que almacenaremos los datos.
 					Cliente cliaux = new Cliente();
-					
+
 					nombreCliente = JOptionPane.showInputDialog("Introduzca el nombre");
 					apellido1Cliente = JOptionPane.showInputDialog("Introduzca el primer apellido");
 					apellido2Cliente = JOptionPane.showInputDialog("Introduzca el segundo apellido");
 					telefonoCliente = JOptionPane.showInputDialog("Introduzca el teléfono de contacto");
-					
+
 					cliaux.setNomcli(nombreCliente);
 					cliaux.setApe1cli(apellido1Cliente);
 					cliaux.setApe2cli(apellido2Cliente);
 					cliaux.setTelcli(telefonoCliente);
-					
-					
-					/*int preguntaVehiculo = JOptionPane.showConfirmDialog(null, "¿Alquilará éste cliente un vehículo?");
-					if(preguntaVehiculo == 0) {
-						vehiculoAlquilado = (Vehiculo) JOptionPane.showInputDialog(null, "Elija un vehículo para el cliente: ", "Elegir",
-								JOptionPane.QUESTION_MESSAGE, null, arrayVehiculos, null);
-						
+
+					int preguntaVehiculo = JOptionPane.showConfirmDialog(null, "¿Alquilará éste cliente un vehículo?");
+					if (preguntaVehiculo == 0) {
+						vehiculoAlquilado = (Vehiculo) JOptionPane.showInputDialog(null,
+								"Elija un vehículo para el cliente: ", "Elegir", JOptionPane.QUESTION_MESSAGE, null,
+								arrayVehiculos, null);
+
 						cliaux.setVehiculo(vehiculoAlquilado);
-					}*/
+					}
 					controladorC.crearCliente(cliaux);
 					break;
-					
-					//Creación de VEHICULOS
+
+				// Creación de VEHICULOS
 				case 1:
-					//Declaramos variables para la inserción de datos.
+					// Declaramos variables para la inserción de datos.
 					int intTransmision;
 					String marca;
 					String modelo;
 					String matricula;
 					int puertas;
-					
-					//Vehiculo auxiliar en el que almacenaremos los datos.
+
+					// Vehiculo auxiliar en el que almacenaremos los datos.
 					Vehiculo vehiaux = new Vehiculo();
-					
-					//Asignamos valor a las variables.
+
+					// Asignamos valor a las variables.
 					marca = JOptionPane.showInputDialog("Introduzca la marca");
 					modelo = JOptionPane.showInputDialog("Introduzca el modelo");
 					matricula = JOptionPane.showInputDialog("Introduzca la matricula");
 					puertas = Integer.parseInt(JOptionPane.showInputDialog("Introduzca cantidad de puertas"));
 					intTransmision = JOptionPane.showConfirmDialog(null, "¿Es automático éste vehículo?");
-					
-					//Introducimos las variables en el vehiculo.
+
+					// Introducimos las variables en el vehiculo.
 					vehiaux.setMarca(marca);
 					vehiaux.setModelo(modelo);
 					vehiaux.setMatricula(matricula);
 					vehiaux.setPuertas(puertas);
-					
-					if(intTransmision == 0) {
+
+					if (intTransmision == 0) {
 						vehiaux.setAutomatico(true);
-					}else {
+					} else {
 						vehiaux.setAutomatico(false);
 					}
-					
+
 					controladorV.crearVehiculo(vehiaux);
 					break;
-					
-					//Creación de MECANICOS.
+
+				// Creación de MECANICOS.
 				case 2:
-					//Declaramos variables para la inserción de datos.
+					// Declaramos variables para la inserción de datos.
 					String nombre;
 					String apellido1Mecanico;
 					String apellido2Mecanico;
-					
-					//Mecanico auxiliar en el que almacenaremos los datos.
+
+					// Mecanico auxiliar en el que almacenaremos los datos.
 					Mecanico mecaux = new Mecanico();
-					
-					//Asignamos valor a las variables.
+
+					// Asignamos valor a las variables.
 					nombre = JOptionPane.showInputDialog("Introduzca el nombre");
 					apellido1Mecanico = JOptionPane.showInputDialog("Introduzca el primer apellido");
 					apellido2Mecanico = JOptionPane.showInputDialog("Introduzca el segundo apellido");
-					
-					//Introducimos las variables en el mecánico.
+
+					// Introducimos las variables en el mecánico.
 					mecaux.setNommec(nombre);
 					mecaux.setApe1mec(apellido1Mecanico);
 					mecaux.setApe2mec(apellido2Mecanico);
-					
-					/*Vehiculo vehiculoAlquilado1;
-					int preguntaVehiculo = JOptionPane.showConfirmDialog(null, "¿Alquilará éste cliente un vehículo?");
-					if(preguntaVehiculo == 0) {
-						vehiculoAlquilado1 = (Vehiculo) JOptionPane.showInputDialog(null, "Elija un vehículo para el cliente: ", "Elegir",
-								JOptionPane.QUESTION_MESSAGE, null, arrayVehiculos, null);
-						
+
+					Vehiculo vehiculoAlquilado1;
+					preguntaVehiculo = JOptionPane.showConfirmDialog(null, "¿Está éste mecánico reparando algún vehículo?");
+					if (preguntaVehiculo == 0) {
+						vehiculoAlquilado1 = (Vehiculo) JOptionPane.showInputDialog(null,
+								"Elija el vehículo que esté reparando el mecánico: ", "Elegir", JOptionPane.QUESTION_MESSAGE, null,
+								arrayVehiculos, null);
+
 						mecaux.setVehiculo(vehiculoAlquilado1);
-					}*/
-					
-					//Creamos el mecánico.
+					}
+
+					// Creamos el mecánico.
 					controladorM.crearMecanico(mecaux);
 					break;
-					
-					//Default, volvemos al menú principal.
+
+				// Default, volvemos al menú principal.
 				default:
 					aux = false;
 					break;
 				}
 				break;
-				//Case ACTUALIZAR DATOS.
+			// Case ACTUALIZAR DATOS.
 			case 3:
 
 				break;
+
+			// Default, salir del programa.
 			default:
 				// Salimos del bucle, finalizando el programa.
 				aux = false;

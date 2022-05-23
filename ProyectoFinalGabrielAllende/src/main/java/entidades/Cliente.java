@@ -8,6 +8,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name = "cliente")
 @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +27,7 @@ public class Cliente implements Serializable {
 
 	// bi-directional one-to-one association to Vehiculo
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "codvehi", referencedColumnName = "codvehi")
+	@JoinColumn(name = "codvehi", referencedColumnName = "codvehi", insertable = false, updatable = true)
 	private Vehiculo vehiculo;
 
 	// Constructor con sus atributos por defecto.
