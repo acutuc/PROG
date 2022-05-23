@@ -91,12 +91,12 @@ public class Cliente implements Serializable {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Cliente [\nID: ");
 		builder.append(codcli);
+		builder.append("\nNombre: ");
+		builder.append(nomcli);
 		builder.append("\nPrimer apellido: ");
 		builder.append(ape1cli);
 		builder.append("\nSegundo apellido: ");
 		builder.append(ape2cli);
-		builder.append("\nNombre: ");
-		builder.append(nomcli);
 		builder.append("\nTeléfono: ");
 		builder.append(telcli);
 		builder.append("\nVehículo alquilado: ");

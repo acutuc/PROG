@@ -60,7 +60,8 @@ INSERT INTO vehiculo
 VALUES
 (1, '9584JBT', 'Renault', '308', 4, false),
 (2, '8452KMN', 'Seat', 'Ibiza', 5, true),
-(3, '4750BRP', 'Mazda', 'RX3', 2, true);
+(3, '4750BRP', 'Mazda', 'RX3', 2, true),
+(4, '2543JCP', 'Nissan', 'Qashqai', 5, false);
 
 INSERT INTO cliente
 VALUES
@@ -74,4 +75,5 @@ VALUES
 (1002, 'Jaime', 'Valero', 'Ruiz', 2),
 (1003, 'Rodrigo', 'Moyano', 'Vicario', 3);
 
-Select * from cliente
+Select * from cliente;
+SELECT * FROM vehiculo;

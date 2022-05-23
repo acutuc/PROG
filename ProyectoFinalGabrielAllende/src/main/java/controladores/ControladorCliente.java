@@ -51,7 +51,7 @@ public class ControladorCliente {
 	public Cliente findByPK(int codcli) {
 		this.em = entityManagerFactory.createEntityManager();
 		Cliente aux = null;
-		this.consulta = em.createNativeQuery("Select * from cliente where codcli = ?", Cliente.class);
+		this.consulta = em.createNativeQuery("SELECT * FROM cliente WHERE codcli = ?", Cliente.class);
 		this.consulta.setParameter(1, codcli);
 		try {
 			aux = (Cliente) consulta.getSingleResult();
@@ -66,7 +66,7 @@ public class ControladorCliente {
 	public Cliente findByTelefono(String telcli) {
 		this.em = entityManagerFactory.createEntityManager();
 		Cliente aux = null;
-		this.consulta = em.createNativeQuery("Select * from cliente where telcli = ?", Cliente.class);
+		this.consulta = em.createNativeQuery("SELECT * FROM cliente WHERE telcli = ?", Cliente.class);
 		this.consulta.setParameter(1, telcli);
 		try {
 			aux = (Cliente) consulta.getSingleResult();
