@@ -3,41 +3,33 @@ package entidades;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the cliente database table.
  * 
  */
 @Entity
-@Table(name="cliente")
-@NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
+@NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int codcli;
 
 	private String ape1cli;
 
 	private String ape2cli;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int codcli;
+
 	private String nomcli;
 
 	private String telcli;
 
-	//bi-directional one-to-one association to Vehiculo
-	@OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
-	@JoinColumn(name="codcli", referencedColumnName="codcli", insertable = false, updatable = false)
+	// bi-directional one-to-one association to Vehiculo
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "codvehi", referencedColumnName = "codvehi")
 	private Vehiculo vehiculo;
 
-	//Constructor con sus atributos por defecto
 	public Cliente() {
-	}
-	
-	//Getters y setters.
-	public int getCodcli() {
-		return codcli;
 	}
 
 	public String getApe1cli() {
@@ -54,6 +46,14 @@ public class Cliente implements Serializable {
 
 	public void setApe2cli(String ape2cli) {
 		this.ape2cli = ape2cli;
+	}
+
+	public int getCodcli() {
+		return this.codcli;
+	}
+
+	public void setCodcli(int codcli) {
+		this.codcli = codcli;
 	}
 
 	public String getNomcli() {
@@ -79,25 +79,25 @@ public class Cliente implements Serializable {
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-	
-	//toString()
-		@Override
-		public String toString() {
-			String codvehi = (this.vehiculo != null) ? String.valueOf(this.vehiculo.getCodvehi()) : "";
-			StringBuilder builder = new StringBuilder();
-			builder.append("Código de cliente: ");
-			builder.append(codcli + "\n");
-			builder.append("Nombre: ");
-			builder.append(nomcli + "\n");
-			builder.append("Primer apellido: ");
-			builder.append(ape1cli + "\n");
-			builder.append("Segundo apellido");
-			builder.append(ape2cli + "\n");
-			builder.append("Teléfono: ");
-			builder.append(telcli + "\n");
-			builder.append("Vehículo alquilado: ");
-			builder.append(codvehi + "\n");
-			return builder.toString();
-		}
+
+	// toString()
+	@Override
+	public String toString() {
+		String codvehi = (this.vehiculo != null) ? String.valueOf(this.vehiculo.getCodvehi()) : "";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Código de cliente: ");
+		builder.append(codcli + "\n");
+		builder.append("Nombre: ");
+		builder.append(nomcli + "\n");
+		builder.append("Primer apellido: ");
+		builder.append(ape1cli + "\n");
+		builder.append("Segundo apellido");
+		builder.append(ape2cli + "\n");
+		builder.append("Teléfono: ");
+		builder.append(telcli + "\n");
+		builder.append("Vehículo alquilado: ");
+		builder.append(codvehi + "\n");
+		return builder.toString();
+	}
 
 }
