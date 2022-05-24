@@ -2,10 +2,10 @@ DROP DATABASE IF EXISTS bdProgramacion;
 CREATE DATABASE IF NOT EXISTS bdProgramacion;
 USE bdProgramacion;
 /*
- ________                  _________			   _________
-|		 |1    alquila   1|	   	    |1	repara   N|		    |
-|Clientes|--------------->|Vehiculos|<------------|Mecanicos|
-|________|                |_________|		      |_________|
+ ________                  _________			   __________
+|		 |1    alquila   1|	   	    |N Construye 1|		     |
+|Clientes|----------------|Vehiculos|-------------|Fabricante|
+|________|                |_________|		      |__________|
 
 Un Cliente alquila UN Vehiculo, un Vehiculo es reparado por VARIOS Mecánicos
 PKs:
@@ -13,67 +13,67 @@ codvehi --> 1 - 99
 codcli --> 100 - 999
 codmec --> 1000 - *
 */
-
--- PK: matricula
-CREATE TABLE IF NOT EXISTS vehiculo
-	(codvehi int auto_increment,
-    matricula char(8),
-    marca varchar(20),
-    modelo varchar(20),
-    puertas tinyint,
-    automatico boolean,
-		constraint pk_vehiculos primary key (codvehi)
-	);
-    
 -- PK: codcli
--- FK: matricula
 CREATE TABLE IF NOT EXISTS cliente
 	(codcli int auto_increment,
 	nomcli varchar(50),
 	ape1cli varchar(50),
 	ape2cli varchar(50),
 	telcli char(9),
-    codvehi int,
-		constraint pk_clientes primary key (codcli),
-        constraint fk_clientes_vehiculos foreign key (codvehi)
-			references vehiculos (codvehi)
-				on delete cascade on update cascade
+		constraint pk_clientes primary key (codcli)
 	);
     
--- PK : codmec
+-- PK : codfab
 -- FK : matricula
-CREATE TABLE IF NOT EXISTS mecanico
-	(codmec int auto_increment,
-    nommec varchar(20),
-    ape1mec varchar(20),
-    ape2mec varchar(20),
-    codvehi int,
-		constraint pk_mecanicos primary key (codmec),
-        constraint fk_vehiculos_mecanicos foreign key (codvehi)
-			references vehiculos (codvehi)
-				on delete cascade on update cascade
+CREATE TABLE IF NOT EXISTS fabricante
+	(codfab int auto_increment,
+    nomfab varchar(20),
+    paisfab varchar(20),
+		constraint fabricante primary key (codfab)
+	);
+
+-- PK: codvehi
+-- FK: codcli
+-- FK: codfab
+CREATE TABLE IF NOT EXISTS vehiculo
+	(codvehi int auto_increment,
+    puertas tinyint,
+    automatico boolean,
+    caballos int,
+    aireacon boolean,
+    codcli int,
+    codfab int,
+		constraint pk_vehiculos primary key (codvehi),
+        constraint fk_vehiculos_cliente foreign key (codcli)
+			references cliente (codcli)
+				on delete no action on update cascade,
+		constraint fk_vehiculos_fabricante foreign key (codfab)
+			references fabricante (codfab)
+				on delete no action on update cascade
 	);
     
-     -- set FOREIGN_KEY_CHECKS=0;
+    -- set FOREIGN_KEY_CHECKS=0;
     
 INSERT INTO vehiculo
+(codvehi, puertas, automatico, caballos, aireacon)
 VALUES
-(1, '9584JBT', 'Renault', '308', 4, false),
-(2, '8452KMN', 'Seat', 'Ibiza', 5, true),
-(3, '4750BRP', 'Mazda', 'RX3', 2, true),
-(4, '2543JCP', 'Nissan', 'Qashqai', 5, false);
+(1, 3, true, 520, true),
+(2, 5, false, 90, false),
+(3, 3, false, 125, true),
+(4, 5, true, 110, true);
 
 INSERT INTO cliente
 VALUES
-(100, 'Gabriel', 'Allende', 'Palacio', '666356987', 1),
-(101, 'Javier', 'Parodi', 'Piñero', '654895201', 2),
-(102, 'Juan', 'Tineo', 'Gómez', '659014598', 3);
+(100, 'Gabriel', 'Allende', 'Palacio', '666356987'),
+(101, 'Javier', 'Parodi', 'Piñero', '654895201'),
+(102, 'Juan', 'Tineo', 'Gómez', '659014598');
 
-INSERT INTO mecanico
+INSERT INTO fabricante
+(codfab, nomfab, paisfab)
 VALUES
-(1001, 'Pedro', 'Martínez', 'Gómez', 1),
-(1002, 'Jaime', 'Valero', 'Ruiz', 2),
-(1003, 'Rodrigo', 'Moyano', 'Vicario', 3);
+(1001, 'McLaren', 'Reino Unido'),
+(1002, 'Lamborghini', 'Italia'),
+(1003, 'Ferrari', 'Italia');
 
 Select * from cliente;
 SELECT * FROM vehiculo;
