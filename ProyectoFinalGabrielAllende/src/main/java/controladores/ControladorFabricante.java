@@ -8,10 +8,10 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import entidades.Mecanico;
+import entidades.Fabricante;
 
 //Definición de la clase
-public class ControladorMecanico {
+public class ControladorFabricante {
 	//Atributos de la clase
 	private static EntityManagerFactory entityManagerFactory = Persistence
 			.createEntityManagerFactory("ProyectoFinalGabrielAllende");
@@ -19,42 +19,42 @@ public class ControladorMecanico {
 	private Query consulta;
 
 	// Métodos
-	public void borrarMecanico(Mecanico m) {
+	public void borrarFabricante(Fabricante f) {
 		this.em = entityManagerFactory.createEntityManager();
-		Mecanico aux = null;
+		Fabricante aux = null;
 		this.em.getTransaction().begin();
-		if (!this.em.contains(m)) {
-			aux = this.em.merge(m);
+		if (!this.em.contains(f)) {
+			aux = this.em.merge(f);
 		}
 		this.em.remove(aux);
 		this.em.getTransaction().commit();
 		this.em.close();
 	}
 
-	public void modificarMecanico(Mecanico m) {
+	public void modificarFabricante(Fabricante f) {
 		this.em = entityManagerFactory.createEntityManager();
 		this.em.getTransaction().begin();
-		this.em.merge(m);
+		this.em.merge(f);
 		this.em.getTransaction().commit();
 		this.em.close();
 
 	}
 
-	public void crearMecanico(Mecanico m) {
+	public void crearFabricante(Fabricante f) {
 		this.em = entityManagerFactory.createEntityManager();
 		this.em.getTransaction().begin();
-		this.em.persist(m);
+		this.em.persist(f);
 		this.em.getTransaction().commit();
 		this.em.close();
 	}
 
-	public Mecanico findByPK(int codmec) {
+	public Fabricante findByPK(int codfab) {
 		this.em = entityManagerFactory.createEntityManager();
-		Mecanico aux = null;
-		this.consulta = em.createNativeQuery("SELECT * FROM mecanico WHERE codmec = ?", Mecanico.class);
-		this.consulta.setParameter(1, codmec);
+		Fabricante aux = null;
+		this.consulta = em.createNativeQuery("SELECT * FROM Fabricante WHERE codfab = ?", Fabricante.class);
+		this.consulta.setParameter(1, codfab);
 		try {
-			aux = (Mecanico) consulta.getSingleResult();
+			aux = (Fabricante) consulta.getSingleResult();
 		} catch (NoResultException nre) {
 			aux = null;
 		}
@@ -63,10 +63,10 @@ public class ControladorMecanico {
 
 	}
 	
-	public List<Mecanico> findAll() {
+	public List<Fabricante> findAll() {
 		this.em = entityManagerFactory.createEntityManager();
-		this.consulta = em.createNamedQuery("Mecanico.findAll");
-		List<Mecanico> lista = (List<Mecanico>) consulta.getResultList();
+		this.consulta = em.createNamedQuery("Fabricante.findAll");
+		List<Fabricante> lista = (List<Fabricante>) consulta.getResultList();
 		this.em.close();
 		return lista;
 	}

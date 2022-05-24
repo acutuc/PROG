@@ -6,10 +6,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import controladores.ControladorCliente;
-import controladores.ControladorMecanico;
+import controladores.ControladorFabricante;
 import controladores.ControladorVehiculo;
 import entidades.Cliente;
-import entidades.Mecanico;
+import entidades.Fabricante;
 import entidades.Vehiculo;
 
 public class AppFinal {
@@ -18,7 +18,7 @@ public class AppFinal {
 		// Instanciamos un controlador de cada tipo.
 		ControladorCliente controladorC = new ControladorCliente();
 		ControladorVehiculo controladorV = new ControladorVehiculo();
-		ControladorMecanico controladorM = new ControladorMecanico();
+		ControladorFabricante controladorF = new ControladorFabricante();
 
 		System.out.println("Modo Admin. ¿Qué desea hacer?");
 
@@ -37,12 +37,12 @@ public class AppFinal {
 			// Inicializo los 3 controladores para consulta.
 			List<Cliente> listaClientes = controladorC.findAll();
 			List<Vehiculo> listaVehiculos = controladorV.findAll();
-			List<Mecanico> listaMecanicos = controladorM.findAll();
+			List<Fabricante> listaFabricantes = controladorF.findAll();
 
 			// Paso a array de Object las listas inicializadas con los controladores.
 			Object[] arrayClientes = Arrays.copyOf(listaClientes.toArray(), listaClientes.size(), Object[].class);
 			Object[] arrayVehiculos = Arrays.copyOf(listaVehiculos.toArray(), listaVehiculos.size(), Object[].class);
-			Object[] arrayMecanicos = Arrays.copyOf(listaMecanicos.toArray(), listaMecanicos.size(), Object[].class);
+			Object[] arrayFabricantes = Arrays.copyOf(listaFabricantes.toArray(), listaFabricantes.size(), Object[].class);
 
 			int opcionesInt = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Elegir", 0, 1, null,
 					arrayOpciones, null);
@@ -64,10 +64,10 @@ public class AppFinal {
 						System.out.println("---------CONSULTA DE VEHICULOS----------");
 						System.out.println(controladorV.findAll());
 						break;
-					// Consultar datos de MECANICOS.
+					// Consultar datos de FABRICANTES.
 					case 2:
-						System.out.println("---------CONSULTA DE MECANICOS----------");
-						System.out.println(controladorM.findAll());
+						System.out.println("---------CONSULTA DE FABRICANTES----------");
+						System.out.println(controladorF.findAll());
 						break;
 					// Volver al menú principal.
 					default:
@@ -107,7 +107,7 @@ public class AppFinal {
 				case 1:
 					opcion = JOptionPane.showInputDialog(null, "Elija un vehículo a borrar: ", "Elegir",
 							JOptionPane.QUESTION_MESSAGE, null, arrayVehiculos, null).toString(); // <---ATENCIÓN.
-					// Bucle que recorre la listaMecanicos, inicializada con el controladorC.
+					// Bucle que recorre la listaVehiculos, inicializada con el controladorV.
 					for (Vehiculo v : listaVehiculos) {
 						// Condición a cumplir para el borrado:
 						// Que el ID de la opción elegida, mediante substring, sea igual al
@@ -119,21 +119,21 @@ public class AppFinal {
 					System.out.println("--------------DATOS TRAS ELIMINAR EL REGISTRO------------------");
 					System.out.println(controladorV.findAll());
 					break;
-				// Borrado de MECANICOS.
+				// Borrado de FABRICANTES.
 				case 2:
-					opcion = JOptionPane.showInputDialog(null, "Elija un mecánico a borrar: ", "Elegir",
-							JOptionPane.QUESTION_MESSAGE, null, arrayMecanicos, null).toString(); // <---ATENCIÓN.
-					// Bucle que recorre la listaClientes, inicializada con el controladorM.
-					for (Mecanico m : listaMecanicos) {
+					opcion = JOptionPane.showInputDialog(null, "Elija un fabricante a borrar: ", "Elegir",
+							JOptionPane.QUESTION_MESSAGE, null, arrayFabricantes, null).toString(); // <---ATENCIÓN.
+					// Bucle que recorre la listaFabricantes, inicializada con el controladorF.
+					for (Fabricante f : listaFabricantes) {
 						// Condición a cumplir para el borrado:
 						// Que el ID de la opción elegida, mediante substring, sea igual al
-						// valor en String del código de cliente.
-						if (opcion.substring(15, 19).equals(String.valueOf(m.getCodmec()))) {
-							controladorM.borrarMecanico(m);
+						// valor en String del código del fabricante.
+						if (opcion.substring(15, 19).equals(String.valueOf(f.getCodfab()))) {
+							controladorF.borrarFabricante(f);
 						}
 					}
 					System.out.println("--------------DATOS TRAS ELIMINAR EL REGISTRO------------------");
-					System.out.println(controladorM.findAll());
+					System.out.println(controladorF.findAll());
 					break;
 				default:
 					aux = false;
@@ -188,16 +188,19 @@ public class AppFinal {
 					String modelo;
 					String matricula;
 					int puertas;
+					int intAire;
 
 					// Vehiculo auxiliar en el que almacenaremos los datos.
 					Vehiculo vehiaux = new Vehiculo();
 
 					// Asignamos valor a las variables.
-					marca = JOptionPane.showInputDialog("Introduzca la marca");
-					modelo = JOptionPane.showInputDialog("Introduzca el modelo");
-					matricula = JOptionPane.showInputDialog("Introduzca la matricula");
 					puertas = Integer.parseInt(JOptionPane.showInputDialog("Introduzca cantidad de puertas"));
 					intTransmision = JOptionPane.showConfirmDialog(null, "¿Es automático éste vehículo?");
+					
+					intAire = JOptionPane.showConfirmDialog(null, "Introduzca la marca");
+					modelo = JOptionPane.showInputDialog("Introduzca el modelo");
+					matricula = JOptionPane.showInputDialog("Introduzca la matricula");
+					
 
 					// Introducimos las variables en el vehiculo.
 					vehiaux.setMarca(marca);
@@ -214,25 +217,25 @@ public class AppFinal {
 					controladorV.crearVehiculo(vehiaux);
 					break;
 
-				// Creación de MECANICOS.
+				// Creación de FabricanteS.
 				case 2:
 					// Declaramos variables para la inserción de datos.
 					String nombre;
-					String apellido1Mecanico;
-					String apellido2Mecanico;
+					String apellido1Fabricante;
+					String apellido2Fabricante;
 
-					// Mecanico auxiliar en el que almacenaremos los datos.
-					Mecanico mecaux = new Mecanico();
+					// Fabricante auxiliar en el que almacenaremos los datos.
+					Fabricante mecaux = new Fabricante();
 
 					// Asignamos valor a las variables.
 					nombre = JOptionPane.showInputDialog("Introduzca el nombre");
-					apellido1Mecanico = JOptionPane.showInputDialog("Introduzca el primer apellido");
-					apellido2Mecanico = JOptionPane.showInputDialog("Introduzca el segundo apellido");
+					apellido1Fabricante = JOptionPane.showInputDialog("Introduzca el primer apellido");
+					apellido2Fabricante = JOptionPane.showInputDialog("Introduzca el segundo apellido");
 
 					// Introducimos las variables en el mecánico.
 					mecaux.setNommec(nombre);
-					mecaux.setApe1mec(apellido1Mecanico);
-					mecaux.setApe2mec(apellido2Mecanico);
+					mecaux.setApe1mec(apellido1Fabricante);
+					mecaux.setApe2mec(apellido2Fabricante);
 
 					Vehiculo vehiculoReparado;
 					preguntaVehiculo = JOptionPane.showConfirmDialog(null,
@@ -246,7 +249,7 @@ public class AppFinal {
 					}
 
 					// Creamos el mecánico.
-					controladorM.crearMecanico(mecaux);
+					controladorF.crearFabricante(mecaux);
 					break;
 
 				// Default, volvemos al menú principal.
@@ -309,7 +312,7 @@ public class AppFinal {
 				case 1:
 					opcion = JOptionPane.showInputDialog(null, "Elija un vehículo a modificar: ", "Elegir",
 							JOptionPane.QUESTION_MESSAGE, null, arrayVehiculos, null).toString(); // <---ATENCIÓN.
-					// Bucle que recorre la listaMecanicos, inicializada con el controladorC.
+					// Bucle que recorre la listaFabricantes, inicializada con el controladorC.
 					for (Vehiculo v : listaVehiculos) {
 						// Condición a cumplir para el borrado:
 						// Que el ID de la opción elegida, mediante substring, sea igual al
@@ -342,30 +345,30 @@ public class AppFinal {
 					System.out.println("--------------DATOS TRAS MODIFICAR EL REGISTRO------------------");
 					System.out.println(controladorV.findAll());
 					break;
-				// Actualización de dats de MECANICOS.
+				// Actualización de dats de FabricanteS.
 				case 2:
 					opcion = JOptionPane.showInputDialog(null, "Elija un mecánico a modificar: ", "Elegir",
-							JOptionPane.QUESTION_MESSAGE, null, arrayMecanicos, null).toString(); // <---ATENCIÓN.
-					// Bucle que recorre la listaClientes, inicializada con el controladorM.
-					for (Mecanico m : listaMecanicos) {
+							JOptionPane.QUESTION_MESSAGE, null, arrayFabricantes, null).toString(); // <---ATENCIÓN.
+					// Bucle que recorre la listaClientes, inicializada con el controladorF.
+					for (Fabricante m : listaFabricantes) {
 						// Condición a cumplir para el borrado:
 						// Que el ID de la opción elegida, mediante substring, sea igual al
 						// valor en String del código de cliente.
 						if (opcion.substring(15, 19).equals(String.valueOf(m.getCodmec()))) {
 							// Declaramos variables para la inserción de datos.
 							String nombre;
-							String apellido1Mecanico;
-							String apellido2Mecanico;
+							String apellido1Fabricante;
+							String apellido2Fabricante;
 							Vehiculo vehiculoReparado;
 
 							// Asignamos valor a las variables.
 							nombre = JOptionPane.showInputDialog("Introduzca el nombre");
-							apellido1Mecanico = JOptionPane.showInputDialog("Introduzca el primer apellido");
-							apellido2Mecanico = JOptionPane.showInputDialog("Introduzca el segundo apellido");
+							apellido1Fabricante = JOptionPane.showInputDialog("Introduzca el primer apellido");
+							apellido2Fabricante = JOptionPane.showInputDialog("Introduzca el segundo apellido");
 
 							m.setNommec(nombre);
-							m.setApe1mec(apellido1Mecanico);
-							m.setApe2mec(apellido2Mecanico);
+							m.setApe1mec(apellido1Fabricante);
+							m.setApe2mec(apellido2Fabricante);
 
 							int preguntaVehiculo = JOptionPane.showConfirmDialog(null,
 									"¿Está éste mecánico reparando algún vehículo?");
@@ -377,11 +380,11 @@ public class AppFinal {
 								m.setVehiculo(vehiculoReparado);
 							}
 
-							controladorM.modificarMecanico(m);
+							controladorF.modificarFabricante(m);
 						}
 					}
 					System.out.println("--------------DATOS TRAS MODIFICAR EL REGISTRO------------------");
-					System.out.println(controladorM.findAll());
+					System.out.println(controladorF.findAll());
 					break;
 				default:
 					aux = false;

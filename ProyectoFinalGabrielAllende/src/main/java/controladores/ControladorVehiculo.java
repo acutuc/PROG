@@ -63,21 +63,6 @@ public class ControladorVehiculo {
 
 	}
 
-	public Vehiculo findByMatricula(String matricula) {
-		this.em = entityManagerFactory.createEntityManager();
-		Vehiculo aux = null;
-		this.consulta = em.createNativeQuery("SELECT * FROM vehiculo WHERE matricula = ?", Vehiculo.class);
-		this.consulta.setParameter(1, matricula);
-		try {
-			aux = (Vehiculo) consulta.getSingleResult();
-		} catch (NoResultException nre) {
-			aux = null;
-		}
-		this.em.close();
-		return aux;
-
-	}
-
 	public List<Vehiculo> findAll() {
 		this.em = entityManagerFactory.createEntityManager();
 		this.consulta = em.createNamedQuery("Vehiculo.findAll");

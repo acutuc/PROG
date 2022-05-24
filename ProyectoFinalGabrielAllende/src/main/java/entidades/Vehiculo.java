@@ -2,7 +2,6 @@ package entidades;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -10,46 +9,40 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name = "vehiculo")
 @NamedQuery(name="Vehiculo.findAll", query="SELECT v FROM Vehiculo v")
 public class Vehiculo implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
+	private boolean aireacon;
+
+	private boolean automatico;
+
+	private int caballos;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int codvehi;
 
-	private boolean automatico;
-
-	private String marca;
-
-	private String matricula;
-
-	private String modelo;
-
 	private int puertas;
 
-	//A partir del codcli, podemos obtener a qué cliente pertenece este Vehículo, 
-	//aunque en la BD no lo podamos obtener directamente.
 	//bi-directional one-to-one association to Cliente
-	@OneToOne(mappedBy="vehiculo", fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToOne(mappedBy="vehiculo", fetch=FetchType.LAZY)
 	private Cliente cliente;
 
-	//bi-directional many-to-one association to Mecanico
-	@OneToMany(mappedBy="vehiculo")
-	private List<Mecanico> mecanicos;
+	//bi-directional many-to-one association to Fabricante
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="codfab", updatable = false, insertable = false)
+	private Fabricante fabricante;
 
-	//Constructor con sus atributos por defecto
 	public Vehiculo() {
 	}
-	
-	//Getters y setters.
-	public int getCodvehi() {
-		return codvehi;
+
+	public boolean getAireacon() {
+		return this.aireacon;
 	}
 
-	public void setCodvehi(int codvehi) {
-		this.codvehi = codvehi;
+	public void setAireacon(boolean aireacon) {
+		this.aireacon = aireacon;
 	}
 
 	public boolean getAutomatico() {
@@ -60,28 +53,20 @@ public class Vehiculo implements Serializable {
 		this.automatico = automatico;
 	}
 
-	public String getMarca() {
-		return this.marca;
+	public int getCaballos() {
+		return this.caballos;
 	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
+	public void setCaballos(int caballos) {
+		this.caballos = caballos;
 	}
 
-	public String getMatricula() {
-		return this.matricula;
+	public int getCodvehi() {
+		return this.codvehi;
 	}
 
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
-
-	public String getModelo() {
-		return this.modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
+	public void setCodvehi(int codvehi) {
+		this.codvehi = codvehi;
 	}
 
 	public int getPuertas() {
@@ -100,52 +85,46 @@ public class Vehiculo implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public List<Mecanico> getMecanicos() {
-		return this.mecanicos;
+	public Fabricante getFabricante() {
+		return this.fabricante;
 	}
 
-	public void setMecanicos(List<Mecanico> mecanicos) {
-		this.mecanicos = mecanicos;
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
 	}
 
-	public Mecanico addMecanico(Mecanico mecanico) {
-		getMecanicos().add(mecanico);
-		mecanico.setVehiculo(this);
-
-		return mecanico;
-	}
-
-	public Mecanico removeMecanico(Mecanico mecanico) {
-		getMecanicos().remove(mecanico);
-		mecanico.setVehiculo(null);
-
-		return mecanico;
-	}
-
-	//toString()
 	@Override
 	public String toString() {
-		String codcli = (this.cliente != null) ? String.valueOf(this.cliente.getCodcli()) : "";
+		String codCliente = (this.cliente != null) ? String.valueOf(this.cliente.getCodcli()) : "";
+		String codFabricante = (this.fabricante != null) ? String.valueOf(this.fabricante.getCodfab()) : "";
 		StringBuilder builder = new StringBuilder();
-		builder.append("Vehiculo [\nID: ");
-		builder.append(codvehi);
-		builder.append("\nTransmisión automática: ");
-		builder.append(automatico);
-		builder.append("\nMarca: ");
-		builder.append(marca);
-		builder.append("\nMatrícula: ");
-		builder.append(matricula);
-		builder.append("\nModelo: ");
-		builder.append(modelo);
-		builder.append("\nPuertas: ");
-		builder.append(puertas);
-		builder.append("\nCliente: ");
-		if(codcli.equals("")) {
-			builder.append("A éste vehículo aún no lo ha alquilado ningún cliente");
+		builder.append("Código del vehículo: ");
+		builder.append(codvehi + "\n");
+		builder.append("Puertas: ");
+		builder.append(puertas + "\n");
+		builder.append("Transmisión: ");
+		if(String.valueOf(this.automatico).equals(true)) {
+			builder.append("automático\n");
+		}else {
+			builder.append("manual\n");
 		}
-		builder.append(codcli + "\n]");
-		/*builder.append("\nMecánicos: ");
-		builder.append(mecanicos + "\n]\n");*/
+		builder.append("Caballos: ");
+		builder.append(caballos + "\n");
+		builder.append("Aire acondicionado: ");
+		if(String.valueOf(this.aireacon).equals(true)) {
+			builder.append("Si\n");
+		}else {
+			builder.append("No\n");
+		}
+		builder.append("Alquilado por el cliente: ");
+		if(codCliente.equals("")) {
+			builder.append("Ningún cliente asociado\n");
+		}else {
+			builder.append(codCliente);
+		}
+		builder.append("Cód. del fabricante: ");
+		builder.append(codFabricante + "\n");
+		
 		return builder.toString();
 	}
 	
