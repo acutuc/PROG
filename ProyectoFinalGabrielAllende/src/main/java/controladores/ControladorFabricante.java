@@ -13,8 +13,7 @@ import entidades.Fabricante;
 //Definición de la clase
 public class ControladorFabricante {
 	//Atributos de la clase
-	private static EntityManagerFactory entityManagerFactory = Persistence
-			.createEntityManagerFactory("ProyectoFinalGabrielAllende");
+	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ProyectoFinalGabrielAllende");
 	private EntityManager em;
 	private Query consulta;
 

@@ -4,26 +4,26 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the fabricante database table.
  * 
  */
 @Entity
-@NamedQuery(name="Fabricante.findAll", query="SELECT f FROM Fabricante f")
+@Table(name="fabricante")
+@NamedQuery(name = "Fabricante.findAll", query = "SELECT f FROM Fabricante f")
 public class Fabricante implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codfab;
 
 	private String nomfab;
 
 	private String paisfab;
 
-	//bi-directional many-to-one association to Vehiculo
-	@OneToMany(mappedBy="fabricante")
+	// bi-directional many-to-one association to Vehiculo
+	@OneToMany(mappedBy = "fabricante")
 	private List<Vehiculo> vehiculos;
 
 	public Fabricante() {
@@ -75,7 +75,7 @@ public class Fabricante implements Serializable {
 		return vehiculo;
 	}
 
-	//toString()
+	// toString()
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -87,15 +87,13 @@ public class Fabricante implements Serializable {
 		builder.append(paisfab + "\n");
 		return builder.toString();
 	}
-	
-		private String toStringVehiculos() {
-			StringBuilder builder = new StringBuilder();
-			for(Vehiculo v : vehiculos) {
-				builder.append("Cód. del vehículo: ").append(v.getCodvehi());
-			}
-			return builder.toString();
+
+	private String toStringVehiculos() {
+		StringBuilder builder = new StringBuilder();
+		for (Vehiculo v : vehiculos) {
+			builder.append("Cód. del vehículo: ").append(v.getCodvehi());
 		}
-	
-	
+		return builder.toString();
+	}
 
 }

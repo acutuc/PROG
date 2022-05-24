@@ -19,9 +19,9 @@ public class AppFinal {
 		ControladorCliente controladorC = new ControladorCliente();
 		ControladorVehiculo controladorV = new ControladorVehiculo();
 		ControladorFabricante controladorF = new ControladorFabricante();
-
+		
 		System.out.println("Modo Admin. ¿Qué desea hacer?");
-
+		
 		// Array para utilizar en el JOptionPane
 		String[] arrayOpciones = { "Consultar datos", "Eliminar datos", "Crear datos", "Actualizar datos", "Salir" };
 
@@ -32,17 +32,19 @@ public class AppFinal {
 		String opcion = "";
 
 		// Array para el menú.
-		String[] arrayDatos = { "Clientes", "Vehículos", "Mecánicos", "Volver" };
+		String[] arrayDatos = { "Clientes", "Vehículos", "Fabricantes", "Volver" };
 		do {
-			// Inicializo los 3 controladores para consulta.
-			List<Cliente> listaClientes = controladorC.findAll();
-			List<Vehiculo> listaVehiculos = controladorV.findAll();
+			// Inicializo las tres listas para consulta.
 			List<Fabricante> listaFabricantes = controladorF.findAll();
+			List<Vehiculo> listaVehiculos = controladorV.findAll();
+			List<Cliente> listaClientes = controladorC.findAll();
+			
 
 			// Paso a array de Object las listas inicializadas con los controladores.
-			Object[] arrayClientes = Arrays.copyOf(listaClientes.toArray(), listaClientes.size(), Object[].class);
-			Object[] arrayVehiculos = Arrays.copyOf(listaVehiculos.toArray(), listaVehiculos.size(), Object[].class);
 			Object[] arrayFabricantes = Arrays.copyOf(listaFabricantes.toArray(), listaFabricantes.size(), Object[].class);
+			Object[] arrayVehiculos = Arrays.copyOf(listaVehiculos.toArray(), listaVehiculos.size(), Object[].class);
+			Object[] arrayClientes = Arrays.copyOf(listaClientes.toArray(), listaClientes.size(), Object[].class);
+			
 
 			int opcionesInt = JOptionPane.showOptionDialog(null, "Seleccione una opción:", "Elegir", 0, 1, null,
 					arrayOpciones, null);
@@ -79,7 +81,7 @@ public class AppFinal {
 				// Pasamos la variable auxiliar a true para seguir en bucle hasta pulsar SALIR.
 				aux = true;
 				break;
-				
+				/*
 			// Case ELIMINAR DATOS
 			case 1:
 				// Menú de datos.
@@ -398,6 +400,7 @@ public class AppFinal {
 				// Salimos del bucle, finalizando el programa.
 				aux = false;
 				break;
+				*/
 			}
 		} while (aux);
 

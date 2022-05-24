@@ -9,9 +9,11 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="cliente")
 @NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int codcli;
@@ -25,21 +27,17 @@ public class Cliente implements Serializable {
 	private String telcli;
 
 	//bi-directional one-to-one association to Vehiculo
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="codcli", referencedColumnName="codcli", updatable = false, insertable = false)
+	@OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinColumn(name="codcli", referencedColumnName="codcli", insertable = false, updatable = false)
 	private Vehiculo vehiculo;
 
-	//Constructor con sus atributos por defecto.
+	//Constructor con sus atributos por defecto
 	public Cliente() {
 	}
-		
-	//Getters y setters
+	
+	//Getters y setters.
 	public int getCodcli() {
 		return codcli;
-	}
-
-	public void setCodcli(int codcli) {
-		this.codcli = codcli;
 	}
 
 	public String getApe1cli() {
@@ -81,26 +79,25 @@ public class Cliente implements Serializable {
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-
-	//toString()
-	@Override
-	public String toString() {
-		String codvehi = (this.vehiculo != null) ? String.valueOf(this.vehiculo.getCodvehi()) : "";
-		StringBuilder builder = new StringBuilder();
-		builder.append("Código de cliente: ");
-		builder.append(codcli + "\n");
-		builder.append("Nombre: ");
-		builder.append(nomcli + "\n");
-		builder.append("Primer apellido: ");
-		builder.append(ape1cli + "\n");
-		builder.append("Segundo apellido");
-		builder.append(ape2cli + "\n");
-		builder.append("Teléfono: ");
-		builder.append(telcli + "\n");
-		builder.append("Vehículo alquilado: ");
-		builder.append(codvehi + "\n");
-		return builder.toString();
-	}
 	
+	//toString()
+		@Override
+		public String toString() {
+			String codvehi = (this.vehiculo != null) ? String.valueOf(this.vehiculo.getCodvehi()) : "";
+			StringBuilder builder = new StringBuilder();
+			builder.append("Código de cliente: ");
+			builder.append(codcli + "\n");
+			builder.append("Nombre: ");
+			builder.append(nomcli + "\n");
+			builder.append("Primer apellido: ");
+			builder.append(ape1cli + "\n");
+			builder.append("Segundo apellido");
+			builder.append(ape2cli + "\n");
+			builder.append("Teléfono: ");
+			builder.append(telcli + "\n");
+			builder.append("Vehículo alquilado: ");
+			builder.append(codvehi + "\n");
+			return builder.toString();
+		}
 
 }

@@ -13,8 +13,7 @@ import entidades.Vehiculo;
 //Definición de la clase.
 public class ControladorVehiculo {
 	//Atributos de la clase.
-	private static EntityManagerFactory entityManagerFactory = Persistence
-			.createEntityManagerFactory("ProyectoFinalGabrielAllende");
+	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ProyectoFinalGabrielAllende");
 	private EntityManager em;
 	private Query consulta;
 

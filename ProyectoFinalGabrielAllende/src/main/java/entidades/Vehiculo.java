@@ -9,19 +9,19 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="vehiculo")
 @NamedQuery(name="Vehiculo.findAll", query="SELECT v FROM Vehiculo v")
 public class Vehiculo implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int codvehi;
+	
 	private boolean aireacon;
 
 	private boolean automatico;
 
 	private int caballos;
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int codvehi;
 
 	private int puertas;
 
@@ -30,8 +30,8 @@ public class Vehiculo implements Serializable {
 	private Cliente cliente;
 
 	//bi-directional many-to-one association to Fabricante
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="codfab", updatable = false, insertable = false)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinColumn(name="codfab", insertable = false, updatable = false)
 	private Fabricante fabricante;
 
 	public Vehiculo() {
@@ -92,7 +92,8 @@ public class Vehiculo implements Serializable {
 	public void setFabricante(Fabricante fabricante) {
 		this.fabricante = fabricante;
 	}
-
+	
+	//toString()
 	@Override
 	public String toString() {
 		String codCliente = (this.cliente != null) ? String.valueOf(this.cliente.getCodcli()) : "";
@@ -127,7 +128,5 @@ public class Vehiculo implements Serializable {
 		
 		return builder.toString();
 	}
-	
-	
 
 }
