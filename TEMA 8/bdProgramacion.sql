@@ -16,9 +16,9 @@ codmec --> 1000 - *
 -- PK: codcli
 CREATE TABLE IF NOT EXISTS cliente
 	(codcli int auto_increment,
-	nomcli varchar(50),
-	ape1cli varchar(50),
-	ape2cli varchar(50),
+	nomcli varchar(100),
+	ape1cli varchar(100),
+	ape2cli varchar(100),
 	telcli char(9),
     codvehi int,
 		constraint pk_clientes primary key (codcli),
@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS cliente
 -- PK : codfab
 CREATE TABLE IF NOT EXISTS fabricante
 	(codfab int auto_increment,
-    nomfab varchar(20),
-    paisfab varchar(20),
+    nomfab varchar(100),
+    paisfab varchar(100),
 		constraint fabricante primary key (codfab)
 	);
 

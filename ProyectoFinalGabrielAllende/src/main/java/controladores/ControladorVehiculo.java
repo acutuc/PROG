@@ -17,7 +17,7 @@ public class ControladorVehiculo {
 	private EntityManager em;
 	private Query consulta;
 
-	// Métodos
+	//Método que borra un vehículo.
 	public void borrarVehiculo(Vehiculo v) {
 		this.em = entityManagerFactory.createEntityManager();
 		Vehiculo aux = null;
@@ -30,6 +30,7 @@ public class ControladorVehiculo {
 		this.em.close();
 	}
 
+	//Método que modifica un vehículo.
 	public void modificarVehiculo(Vehiculo v) {
 		this.em = entityManagerFactory.createEntityManager();
 		this.em.getTransaction().begin();
@@ -39,6 +40,7 @@ public class ControladorVehiculo {
 
 	}
 
+	//Método que persiste un vehículo
 	public void crearVehiculo(Vehiculo v) {
 		this.em = entityManagerFactory.createEntityManager();
 		this.em.getTransaction().begin();
@@ -47,6 +49,7 @@ public class ControladorVehiculo {
 		this.em.close();
 	}
 
+	//Método que localiza un vehículo por su PK.
 	public Vehiculo findByPK(int codvehi) {
 		this.em = entityManagerFactory.createEntityManager();
 		Vehiculo aux = null;
@@ -62,6 +65,7 @@ public class ControladorVehiculo {
 
 	}
 
+	//Método que nos devuelve una List con todos los registros de la tabla vehiculo.
 	public List<Vehiculo> findAll() {
 		this.em = entityManagerFactory.createEntityManager();
 		this.consulta = em.createNamedQuery("Vehiculo.findAll");

@@ -17,7 +17,7 @@ public class ControladorFabricante {
 	private EntityManager em;
 	private Query consulta;
 
-	// Métodos
+	// Método que borra un fabricante
 	public void borrarFabricante(Fabricante f) {
 		this.em = entityManagerFactory.createEntityManager();
 		Fabricante aux = null;
@@ -30,6 +30,7 @@ public class ControladorFabricante {
 		this.em.close();
 	}
 
+	//Método que modifica un fabricante
 	public void modificarFabricante(Fabricante f) {
 		this.em = entityManagerFactory.createEntityManager();
 		this.em.getTransaction().begin();
@@ -39,6 +40,7 @@ public class ControladorFabricante {
 
 	}
 
+	//Método que persiste un fabricante.
 	public void crearFabricante(Fabricante f) {
 		this.em = entityManagerFactory.createEntityManager();
 		this.em.getTransaction().begin();
@@ -47,6 +49,7 @@ public class ControladorFabricante {
 		this.em.close();
 	}
 
+	//Método que busca un fabricante por su PK.
 	public Fabricante findByPK(int codfab) {
 		this.em = entityManagerFactory.createEntityManager();
 		Fabricante aux = null;
@@ -62,6 +65,7 @@ public class ControladorFabricante {
 
 	}
 	
+	//Método que nos devuelve una List con todos los registros de la tabla fabricante.
 	public List<Fabricante> findAll() {
 		this.em = entityManagerFactory.createEntityManager();
 		this.consulta = em.createNamedQuery("Fabricante.findAll");

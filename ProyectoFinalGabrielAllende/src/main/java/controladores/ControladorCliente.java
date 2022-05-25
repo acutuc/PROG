@@ -18,7 +18,7 @@ public class ControladorCliente {
 	private EntityManager em;
 	private Query consulta;
 
-	// Métodos
+	//Método que elimina un cliente
 	public void borrarCliente(Cliente c) {
 		this.em = entityManagerFactory.createEntityManager();
 		Cliente aux = null;
@@ -31,6 +31,7 @@ public class ControladorCliente {
 		this.em.close();
 	}
 
+	//Método que modifica un cliente.
 	public void modificarCliente(Cliente c) {
 		this.em = entityManagerFactory.createEntityManager();
 		this.em.getTransaction().begin();
@@ -40,6 +41,7 @@ public class ControladorCliente {
 
 	}
 
+	//Método que persiste un cliente.
 	public void crearCliente(Cliente c) {
 		this.em = entityManagerFactory.createEntityManager();
 		this.em.getTransaction().begin();
@@ -48,6 +50,7 @@ public class ControladorCliente {
 		this.em.close();
 	}
 
+	//Método que localiza un cliente por su PK.
 	public Cliente findByPK(int codcli) {
 		this.em = entityManagerFactory.createEntityManager();
 		Cliente aux = null;
@@ -63,6 +66,7 @@ public class ControladorCliente {
 
 	}
 
+	//Método que localiza un cliente por su num. de teléfono.
 	public Cliente findByTelefono(String telcli) {
 		this.em = entityManagerFactory.createEntityManager();
 		Cliente aux = null;
@@ -78,6 +82,7 @@ public class ControladorCliente {
 
 	}
 
+	//Método que nos devuelve una List con todos los registros de la tabla cliente.
 	public List<Cliente> findAll() {
 		this.em = entityManagerFactory.createEntityManager();
 		this.consulta = em.createNamedQuery("Cliente.findAll");

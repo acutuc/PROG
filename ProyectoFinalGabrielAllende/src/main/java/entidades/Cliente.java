@@ -7,8 +7,11 @@ import javax.persistence.*;
  * The persistent class for the cliente database table.
  * 
  */
+//Entity nos dice que esta clase es una ENTIDAD, la cual será gestionada por Entity Manager
 @Entity
-@Table(name="cliente")
+//Table nos da las características de la tabla, en este caso el nombre de la misma.
+@Table(name = "cliente")
+//Las consultas con nombre se definen junto con la entidad, utilizando la anotación @NamedQuery.
 @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -17,6 +20,12 @@ public class Cliente implements Serializable {
 
 	private String ape2cli;
 
+	// Id y GeneratedValue van juntos, justo encima de la PK.
+	// Id nos dice cuál es el atributo que se mapea con la clave primaria.
+	// GeneratedValue nos indica la forma en la que se guarda la PK al insertar una
+	// nueva
+	// entidad en la tabla. IDENTITY es para aquellas tablas donde la pk es
+	// auto_increment.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codcli;
@@ -25,7 +34,12 @@ public class Cliente implements Serializable {
 
 	private String telcli;
 
-	// bi-directional one-to-one association to Vehiculo
+	// Relación bidireccional uno a uno a Vehiculo.
+	// Un cliente puede comprar un vehiculo.
+	// Este atributo representa el vehiculo involucrado en esta venta.
+	// La tabla cliente es la propietaria de la relación al tener como clave foránea, la clave primaria de vehículo.
+	// Esto se indica con @JoinColumn y el atributo de la tabla con el que obtener
+	// los datos de la tabla vehiculo.
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codvehi", referencedColumnName = "codvehi")
 	private Vehiculo vehiculo;
@@ -97,7 +111,7 @@ public class Cliente implements Serializable {
 		builder.append("Teléfono: ");
 		builder.append(telcli + " \n");
 		builder.append("Vehículo alquilado: ");
-		if(codvehi.equals("")) {
+		if (codvehi.equals("")) {
 			builder.append("No tiene alquilado ningún vehículo \n");
 		}
 		builder.append(codvehi + " \n");

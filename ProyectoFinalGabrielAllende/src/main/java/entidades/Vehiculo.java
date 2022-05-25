@@ -7,12 +7,21 @@ import javax.persistence.*;
  * The persistent class for the vehiculo database table.
  * 
  */
+//Entity nos dice que esta clase es una ENTIDAD, la cual será gestionada por Entity Manager
 @Entity
-@Table(name="vehiculo")
+//Table nos da las características de la tabla, en este caso el nombre de la misma.
+@Table(name = "vehiculo")
+//Las consultas con nombre se definen junto con la entidad, utilizando la anotación @NamedQuery.
 @NamedQuery(name = "Vehiculo.findAll", query = "SELECT v FROM Vehiculo v")
 public class Vehiculo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	// Id y GeneratedValue van juntos, justo encima de la PK.
+	// Id nos dice cuál es el atributo que se mapea con la clave primaria.
+	// GeneratedValue nos indica la forma en la que se guarda la PK al insertar una
+	// nueva
+	// entidad en la tabla. IDENTITY es para aquellas tablas donde la pk es
+	// auto_increment.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codvehi;
@@ -31,6 +40,8 @@ public class Vehiculo implements Serializable {
 	private Fabricante fabricante;
 
 	// bi-directional one-to-one association to Cliente
+	//EAGER (recupera el dato cuando se obtiene la entidad de la base de datos)
+	//LAZY (recupera el dato cuando se accede al atributo).
 	@OneToOne(mappedBy = "vehiculo", fetch = FetchType.LAZY)
 	private Cliente cliente;
 

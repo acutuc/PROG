@@ -8,12 +8,21 @@ import java.util.List;
  * The persistent class for the fabricante database table.
  * 
  */
+//Entity nos dice que esta clase es una ENTIDAD, la cual será gestionada por Entity Manager
 @Entity
-@Table(name="fabricante")
+//Table nos da las características de la tabla, en este caso el nombre de la misma.
+@Table(name = "fabricante")
+//Las consultas con nombre se definen junto con la entidad, utilizando la anotación @NamedQuery.
 @NamedQuery(name = "Fabricante.findAll", query = "SELECT f FROM Fabricante f")
 public class Fabricante implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	// Id y GeneratedValue van juntos, justo encima de la PK.
+	// Id nos dice cuál es el atributo que se mapea con la clave primaria.
+	// GeneratedValue nos indica la forma en la que se guarda la PK al insertar una
+	// nueva
+	// entidad en la tabla. IDENTITY es para aquellas tablas donde la pk es
+	// auto_increment.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codfab;
