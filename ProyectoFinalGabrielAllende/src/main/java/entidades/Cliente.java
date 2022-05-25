@@ -8,6 +8,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="cliente")
 @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -85,18 +86,21 @@ public class Cliente implements Serializable {
 	public String toString() {
 		String codvehi = (this.vehiculo != null) ? String.valueOf(this.vehiculo.getCodvehi()) : "";
 		StringBuilder builder = new StringBuilder();
-		builder.append("Código de cliente: ");
-		builder.append(codcli + "\n");
+		builder.append("\nCódigo de cliente: ");
+		builder.append(codcli + " \n");
 		builder.append("Nombre: ");
-		builder.append(nomcli + "\n");
+		builder.append(nomcli + " \n");
 		builder.append("Primer apellido: ");
-		builder.append(ape1cli + "\n");
+		builder.append(ape1cli + " \n");
 		builder.append("Segundo apellido");
-		builder.append(ape2cli + "\n");
+		builder.append(ape2cli + " \n");
 		builder.append("Teléfono: ");
-		builder.append(telcli + "\n");
+		builder.append(telcli + " \n");
 		builder.append("Vehículo alquilado: ");
-		builder.append(codvehi + "\n");
+		if(codvehi.equals("")) {
+			builder.append("No tiene alquilado ningún vehículo \n");
+		}
+		builder.append(codvehi + " \n");
 		return builder.toString();
 	}
 

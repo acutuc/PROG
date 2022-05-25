@@ -9,6 +9,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="fabricante")
 @NamedQuery(name = "Fabricante.findAll", query = "SELECT f FROM Fabricante f")
 public class Fabricante implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -78,19 +79,20 @@ public class Fabricante implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Código del fabricante: ");
-		builder.append(codfab + "\n");
+		builder.append("\nCódigo del fabricante: ");
+		builder.append(codfab + " \n");
 		builder.append("Nombre del fabricante: ");
-		builder.append(nomfab + "\n");
+		builder.append(nomfab + " \n");
 		builder.append("País de origen del fabricante: ");
-		builder.append(paisfab + "\n");
+		builder.append(paisfab + " \n");
+		builder.append(toStringVehiculos());
 		return builder.toString();
 	}
 
 	private String toStringVehiculos() {
 		StringBuilder builder = new StringBuilder();
 		for (Vehiculo v : vehiculos) {
-			builder.append("Cód. del vehículo: ").append(v.getCodvehi());
+			builder.append("Cód. del vehículo: ").append(v.getCodvehi() + " \n");
 		}
 		return builder.toString();
 	}

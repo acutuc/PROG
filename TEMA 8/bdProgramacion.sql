@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS vehiculo
 		constraint pk_vehiculos primary key (codvehi),
 		constraint fk_vehiculos_fabricante foreign key (codfab)
 			references fabricante (codfab)
-				on delete no action on update no action
+				on delete no action on update cascade
 	);
     
     -- set FOREIGN_KEY_CHECKS=0;
@@ -65,14 +65,18 @@ VALUES
 (1, 3, true, 520, true, 1001),
 (2, 5, false, 90, false, 1003),
 (3, 3, false, 125, true, 1003),
-(4, 5, true, 110, true, 1002);
+(4, 5, true, 110, true, 1002),
+(5, 5, false, 95, true, 1004),
+(6, 3, true, 210, true, 1004),
+(7, 3, false, 190, true, 1004);
     
 INSERT INTO fabricante
 (codfab, nomfab, paisfab)
 VALUES
 (1001, 'McLaren', 'Reino Unido'),
 (1002, 'Lamborghini', 'Italia'),
-(1003, 'Ferrari', 'Italia');
+(1003, 'Ferrari', 'Italia'),
+(1004, 'Ford', 'Estados Unidos');
 
 
 Select * from cliente;

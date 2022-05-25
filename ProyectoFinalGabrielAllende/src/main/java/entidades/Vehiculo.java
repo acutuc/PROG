@@ -8,6 +8,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="vehiculo")
 @NamedQuery(name = "Vehiculo.findAll", query = "SELECT v FROM Vehiculo v")
 public class Vehiculo implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -98,32 +99,32 @@ public class Vehiculo implements Serializable {
 		String codCliente = (this.cliente != null) ? String.valueOf(this.cliente.getCodcli()) : "";
 		String codFabricante = (this.fabricante != null) ? String.valueOf(this.fabricante.getCodfab()) : "";
 		StringBuilder builder = new StringBuilder();
-		builder.append("Código del vehículo: ");
-		builder.append(codvehi + "\n");
+		builder.append("\nCódigo del vehículo: ");
+		builder.append(codvehi + " \n");
 		builder.append("Puertas: ");
-		builder.append(puertas + "\n");
+		builder.append(puertas + " \n");
 		builder.append("Transmisión: ");
 		if (String.valueOf(this.automatico).equals(true)) {
-			builder.append("automático\n");
+			builder.append("automático \n");
 		} else {
-			builder.append("manual\n");
+			builder.append("manual \n");
 		}
 		builder.append("Caballos: ");
-		builder.append(caballos + "\n");
+		builder.append(caballos + " \n");
 		builder.append("Aire acondicionado: ");
 		if (String.valueOf(this.aireacon).equals(true)) {
-			builder.append("Si\n");
+			builder.append("Si \n");
 		} else {
-			builder.append("No\n");
+			builder.append("No \n");
 		}
 		builder.append("Alquilado por el cliente: ");
 		if (codCliente.equals("")) {
-			builder.append("Ningún cliente asociado\n");
+			builder.append("Ningún cliente asociado \n");
 		} else {
-			builder.append(codCliente);
+			builder.append(codCliente + " \n");
 		}
 		builder.append("Cód. del fabricante: ");
-		builder.append(codFabricante + "\n");
+		builder.append(codFabricante + " \n");
 
 		return builder.toString();
 	}
