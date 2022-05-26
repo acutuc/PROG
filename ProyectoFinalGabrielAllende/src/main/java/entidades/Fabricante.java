@@ -34,7 +34,7 @@ public class Fabricante implements Serializable {
 	private String paisfab;
 
 	// bi-directional many-to-one association to Vehiculo
-	@OneToMany(mappedBy = "fabricante")
+	@OneToMany(mappedBy = "fabricante", cascade = CascadeType.REFRESH)
 	private List<Vehiculo> vehiculos;
 
 	public Fabricante() {

@@ -43,7 +43,7 @@ public class Cliente implements Serializable {
 	// foránea, la clave primaria de vehículo.
 	// Esto se indica con @JoinColumn y el atributo de la tabla con el que obtener
 	// los datos de la tabla vehiculo.
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "codvehi", referencedColumnName = "codvehi")
 	private Vehiculo vehiculo;
 

@@ -35,14 +35,14 @@ public class Vehiculo implements Serializable {
 	private int puertas;
 
 	// bi-directional many-to-one association to Fabricante
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "codfab")
 	private Fabricante fabricante;
 
 	// bi-directional one-to-one association to Cliente
 	//EAGER (recupera el dato cuando se obtiene la entidad de la base de datos)
 	//LAZY (recupera el dato cuando se accede al atributo).
-	@OneToOne(mappedBy = "vehiculo", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "vehiculo", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Cliente cliente;
 
 	public Vehiculo() {
