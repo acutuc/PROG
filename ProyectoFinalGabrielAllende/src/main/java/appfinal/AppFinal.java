@@ -90,25 +90,25 @@ public class AppFinal {
 			int controlBucle = JOptionPane.showOptionDialog(null, "¿Qué datos desea consultar?", "Elegir", 0, 1, null,
 					arrayDatos, null);
 			switch (controlBucle) {
-			
+
 			// Consultar datos de CLIENTES.
 			case 0:
 				System.out.println("---------CONSULTA DE CLIENTES----------");
 				System.out.println(controladorC.findAll());
 				break;
-				
+
 			// Consultar datos de VEHICULOS.
 			case 1:
 				System.out.println("---------CONSULTA DE VEHICULOS----------");
 				System.out.println(controladorV.findAll());
 				break;
-				
+
 			// Consultar datos de FABRICANTES.
 			case 2:
 				System.out.println("---------CONSULTA DE FABRICANTES----------");
 				System.out.println(controladorF.findAll());
 				break;
-				
+
 			// Volver al menú principal.
 			default:
 				aux = false;
@@ -118,7 +118,7 @@ public class AppFinal {
 
 	}
 
-	//Método del menú de borrado de datos.
+	// Método del menú de borrado de datos.
 	public static void menuBorrarDatos() {
 		// Instanciamos un controlador de cada tipo.
 		ControladorCliente controladorC = new ControladorCliente();
@@ -154,7 +154,7 @@ public class AppFinal {
 						// Que el ID de la opción elegida, mediante substring, sea igual al
 						// valor en String del código de cliente.
 						if (opcion.substring(19, 22).equals(String.valueOf(c.getCodcli()))) {
-							//Borramos el cliente de la base de datos
+							// Borramos el cliente de la base de datos
 							controladorC.borrarCliente(c);
 						}
 					}
@@ -171,7 +171,7 @@ public class AppFinal {
 						// Que el ID de la opción elegida, mediante substring, sea igual al
 						// valor en String del código de vehículo.
 						if (opcion.substring(22, 23).equals(String.valueOf(v.getCodvehi()))) {
-							//Borramos el vehículo de la base de datos.
+							// Borramos el vehículo de la base de datos.
 							controladorV.borrarVehiculo(v);
 						}
 					}
@@ -187,7 +187,7 @@ public class AppFinal {
 					break;
 				}
 			} catch (NullPointerException npe) {
-				//Catch para escapar al darle a cancelar una vez entramos a borrar un objeto.
+				// Catch para escapar al darle a cancelar una vez entramos a borrar un objeto.
 			}
 		} while (aux);
 	}
@@ -292,7 +292,7 @@ public class AppFinal {
 					vehiaux.setAireacon(false);
 				}
 
-				//Persistimos el vehículo.
+				// Persistimos el vehículo.
 				controladorV.crearVehiculo(vehiaux);
 				break;
 
@@ -347,7 +347,7 @@ public class AppFinal {
 			int opcionesInt = JOptionPane.showOptionDialog(null, "¿Qué datos desea modificar?", "Elegir", 0, 1, null,
 					arrayDatos, null);
 			switch (opcionesInt) {
-			
+
 			// Actualización de datos de CLIENTES.
 			case 0:
 				// Éste JOptionPane tiene el método .toString implementado, para evitar el
@@ -384,7 +384,7 @@ public class AppFinal {
 
 							c.setVehiculo(vehiculoAlquilado);
 						}
-						//Modificamos el cliente
+						// Modificamos el cliente
 						controladorC.modificarCliente(c);
 					}
 				}
@@ -425,14 +425,14 @@ public class AppFinal {
 						} else {
 							v.setAireacon(false);
 						}
-						//Modificamos el vehículo.
+						// Modificamos el vehículo.
 						controladorV.modificarVehiculo(v);
 					}
 				}
 				System.out.println("--------------DATOS TRAS MODIFICAR EL REGISTRO------------------");
 				System.out.println(controladorV.findAll());
 				break;
-				
+
 			// Actualización de datos de Fabricantes.
 			case 2:
 				opcion = JOptionPane.showInputDialog(null, "Elija un fabricante a modificar: ", "Elegir",
@@ -451,7 +451,7 @@ public class AppFinal {
 						f.setNomfab(nombre);
 						f.setPaisfab(pais);
 
-						//Modificamos el fabricante.
+						// Modificamos el fabricante.
 						controladorF.modificarFabricante(f);
 					}
 				}
@@ -480,7 +480,7 @@ public class AppFinal {
 					// Si alguno de los caracteres no es una letra del alfabeto, mayúscula o
 					// minúscula
 					// se vuelve a solicitar el dato.
-					if (valorASCII != 165 && (valorASCII < 65 || valorASCII > 90)) {
+					if (valorASCII != 165 && (valorASCII < 65 || valorASCII > 90) && valorASCII != 32) {
 						JOptionPane.showMessageDialog(null, "Ha introducido un carácter no válido");
 						break;
 					}
@@ -488,16 +488,21 @@ public class AppFinal {
 			} catch (NullPointerException npe) {
 				JOptionPane.showMessageDialog(null, "No puede aceptar con el campo vacío o cancelar.");
 			}
+			if (aux.equals("Ha introducido un carácter no válido")) {
+				control = true;
+			}
+			control = false;
 		} while (control);
 		return aux;
 	}
-	
+
 	// Método que controla que el nombre tenga obligatoriamente letras del alfabeto.
-		public static String controlPais() {
-			String aux = "";
-			boolean control = true;
-			do {
-				try {
+	public static String controlPais() {
+		String aux = "";
+		boolean control = true;
+		do {
+			try {
+				do {
 					aux = JOptionPane.showInputDialog("Introduzca el país del fabricante");
 
 					for (int i = 0; i < aux.length(); i++) {
@@ -512,12 +517,16 @@ public class AppFinal {
 							break;
 						}
 					}
-				} catch (NullPointerException npe) {
-					JOptionPane.showMessageDialog(null, "No puede aceptar con el campo vacío o cancelar.");
-				}
-			} while (control);
-			return aux;
-		}
+					control = false;
+				} while (control);
+				control = true;
+			} catch (NullPointerException npe) {
+				JOptionPane.showMessageDialog(null, "No puede aceptar con el campo vacío o cancelar.");
+			}
+			control = false;
+		} while (control);
+		return aux;
+	}
 
 	// Método que controla que el nombre tenga obligatoriamente letras del alfabeto.
 	public static String controlApellido1() {
@@ -542,6 +551,7 @@ public class AppFinal {
 			} catch (NullPointerException npe) {
 				JOptionPane.showMessageDialog(null, "No puede aceptar con el campo vacío o cancelar.");
 			}
+			control = false;
 		} while (control);
 		return aux;
 	}
@@ -569,6 +579,7 @@ public class AppFinal {
 			} catch (NullPointerException npe) {
 				JOptionPane.showMessageDialog(null, "No puede aceptar con el campo vacío o cancelar.");
 			}
+			control = false;
 		} while (control);
 		return aux;
 	}
@@ -612,6 +623,7 @@ public class AppFinal {
 			} catch (NumberFormatException nfe) {
 				JOptionPane.showMessageDialog(null, "Tiene que que introducir un número entero menor de 10 dígitos.");
 			}
+			control = false;
 		} while (control);
 		return i;
 	}
@@ -629,6 +641,7 @@ public class AppFinal {
 			} catch (NumberFormatException nfe) {
 				JOptionPane.showMessageDialog(null, "Tiene que que introducir un número entero.");
 			}
+			control = false;
 		} while (control);
 		return i;
 	}

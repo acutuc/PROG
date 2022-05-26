@@ -24,6 +24,8 @@ public class Fabricante implements Serializable {
 	// entidad en la tabla. IDENTITY es para aquellas tablas donde la pk es
 	// auto_increment.
 	@Id
+	// EAGER (recupera el dato cuando se obtiene la entidad de la base de datos)
+	// LAZY (recupera el dato cuando se accede al atributo).
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codfab;
 
