@@ -109,7 +109,7 @@ public class Cliente implements Serializable {
 		builder.append(nomcli + " \n");
 		builder.append("Primer apellido: ");
 		builder.append(ape1cli + " \n");
-		builder.append("Segundo apellido");
+		builder.append("Segundo apellido: ");
 		builder.append(ape2cli + " \n");
 		builder.append("Teléfono: ");
 		builder.append(telcli + " \n");

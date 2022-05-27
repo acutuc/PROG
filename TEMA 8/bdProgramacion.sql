@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS bdProgramacion;
 CREATE DATABASE IF NOT EXISTS bdProgramacion;
 USE bdProgramacion;
+set FOREIGN_KEY_CHECKS=0;
 /*
  ________                  _________			   __________
 |		 |1    alquila   1|	   	    |N Construye 1|		     |
@@ -51,7 +52,7 @@ CREATE TABLE IF NOT EXISTS vehiculo
 				on delete no action on update cascade
 	);
     
-    -- set FOREIGN_KEY_CHECKS=0;
+    
     
 INSERT INTO cliente
 VALUES
